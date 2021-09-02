@@ -29,9 +29,9 @@ if ( window.isSecureContext === false ) {
 
 
 /** 
-* @var storedDate - checks typeof to keep Chrome happy, gets stored date
-* @returns {string} - YYYY-MM-DD ???
-*/
+ * @var storedDate - checks typeof to keep Chrome happy, gets stored date
+ * @type {string}
+ */
 if (typeof store !== 'undefined') {
 	var storedDate = store.get('dateSwapped');
 }
@@ -42,7 +42,7 @@ else {
 
 /**
 *	@function dateChecked - Checks date value passed is valid date
-*	@param {Date} dateChecked
+*	@param {date} dateChecked
 *	@return {boolean}
 */
 function dateValid( dateChecked ) {
@@ -69,11 +69,10 @@ function dayPlural(daysRemaining) {
 }
 
 
-// Make UTC Version to add as datetime attribute. SEEMS TO BE DAY OUT THOUGH!!!!!111
 /**
 *	@function dateUtc - Make UTC Version to add as datetime attribute
-*	@param {Date} dateIn
-*	@return {boolean}
+*	@param {date} dateIn
+*	@return {date}
 */
 function dateUtc( dateIn ){
 	
@@ -89,25 +88,28 @@ function dateUtc( dateIn ){
 */
 class makeDates {
 
-	/** 
-	* @param {Date} datechanged 
-	*/
+	/** @param {date} datechanged */
 	constructor (datechanged) {
+		/** @type {date} */
 		this.date = moment(datechanged, "YYYY-MM-DD");
 	}
 
+	/** @returns {date} */
 	_dateStart() {
 		return this.date;
 	}
 
+	/** @returns {date} */
 	_dateEnd() {
 		return moment(this.date).add(90, 'days');
 	}
 	
+	/** @returns {number} */
 	_dateDayremain() {
 		return Math.max(0, this._dateEnd().diff(moment(), 'days') );
 	}
 
+	/** @returns {object} */
 	get brushDates() {
 		return {datestart: this._dateStart(), dateremain: this._dateDayremain(), dateend: this._dateEnd()}
 	}
@@ -117,12 +119,13 @@ class makeDates {
 /**
 * Add dates to DOM
 * @function dateFill
-* @param {Date} datechanged
+* @param {date} datechanged
 */
 function dateFill(datechanged) {
 
 	if ( dateValid(datechanged) ) {
 		
+		/** @type {object} */
 		let {datestart, dateremain, dateend} = new makeDates(datechanged).brushDates;
 		
 		// Vars
@@ -170,7 +173,7 @@ function brushDate() {
 function brushSwap() {
 
 	console.warn('Brushchange!');
-	let datenow = moment().format("YYYY-MM-DD");
+	/** @type {date} */	let datenow = moment().format("YYYY-MM-DD");
 	
 	if ( dateValid( datenow ) ) {
 		if (storedDate) {
@@ -196,6 +199,10 @@ function brushSwap() {
 
 
 // Once Event Listener Test / Polyfill
+/** 
+ * @var supportsOnce
+ * @type {boolean} 
+ */
 var supportsOnce = false;
 try {
 	let opts = Object.defineProperty({}, 'once', {
