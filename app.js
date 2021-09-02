@@ -32,11 +32,9 @@ if ( window.isSecureContext === false ) {
  * @var storedDate - checks typeof to keep Chrome happy, gets stored date
  * @type {string}
  */
+var storedDate = null;
 if (typeof store !== 'undefined') {
-	var storedDate = store.get('dateSwapped');
-}
-else {
-	var storedDate = false;
+	storedDate = store.get('dateSwapped');
 }
 
 
