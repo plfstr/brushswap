@@ -44,7 +44,7 @@ if (typeof store !== 'undefined') {
 *	@return {boolean}
 */
 function dateValid( dateChecked ) {
-	return moment( dateChecked, "YYYY-MM-DD", true ).isValid();
+	return moment(dateChecked).isValid();
 }
 
 
@@ -89,7 +89,7 @@ class makeDates {
 	/** @param {date} datechanged */
 	constructor (datechanged) {
 		/** @type {date} */
-		this.date = moment(datechanged, "YYYY-MM-DD");
+		this.date = moment(datechanged);
 	}
 
 	/** @returns {date} */
@@ -171,7 +171,7 @@ function brushDate() {
 function brushSwap() {
 
 	console.warn('Brushchange!');
-	/** @type {date} */	let datenow = moment().format("YYYY-MM-DD");
+	/** @type {date} */	let datenow = moment();
 	
 	if ( dateValid( datenow ) ) {
 		if (storedDate) {
