@@ -180,16 +180,6 @@ function brushSwap() {
 		dateFill(datenow);
 		store.set('dateSwapped', datenow);
 	}
-	
-	if (hasScheduling) {
-		try {
-			createScheduledNotification('retoothbrush', 'ReToothbrush', moment().valueOf());
-			document.querySelector('i').textContent = moment().add(1, 'days').valueOf();
-		} catch(error) {
-			console.warn(error);
-			confirm('Notification failed to schedule. You will not receive a reminder');
-		}
-	}
 
 	// Trigger fade-in effect
 	document.body.classList.add('has-updated');
@@ -236,46 +226,4 @@ if ("serviceWorker" in navigator) {
 		  console.log('Registration failed with ' + error);
 		});
 	}
-  }
-
-/*
-* Scheduled Notifications Test
-*/
-const hasScheduling = "showTrigger" in Notification.prototype;
-var createScheduledNotification;
-var cancelScheduledNotification;
-
-if (hasScheduling) {
-
-	navigator.permissions.query({name:'notifications'}).then(function(result) {
-		if (result.state == 'granted') {
-			confirm('You will receive notification reminders');
-		} else {
-			confirm('You need to enable notifications to receive notification reminders');
-			Notification.requestPermission().then(function(result) {
-				console.log(result);
-			});
-		}
-	});
-
-	createScheduledNotification = async (tag, title, timestamp) => {
-		console.log({tag, title, timestamp});
-		let timedelay = 1000 * 60 * 60 * 24 * 90;
-		const registration = await navigator.serviceWorker.getRegistration();
-		console.log(registration);
-		registration.showNotification(title, {
-			tag: tag,
-			body: "Its time to swap your toothbrush!",
-			showTrigger: new TimestampTrigger(timestamp + timedelay)
-		});
-	};
-
-	cancelScheduledNotification = async (tag) => {
-		const registration = await navigator.serviceWorker.getRegistration();
-		const notifications = await registration.getNotifications({
-		  tag: tag,
-		  includeTriggered: true,
-		});
-		notifications.forEach((notification) => notification.close());
-	};
 }
