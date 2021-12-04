@@ -170,12 +170,13 @@ function brushDate() {
 */
 function brushSwap() {
 
-	console.warn('Brushchange!');
 	/** @type {date} */	let datenow = moment();
 	
 	if ( dateValid( datenow ) ) {
 		if (storedDate) {
-			confirm('Brush Changed. Create new date?');
+			if (!confirm('Brush Changed. Create new date?')) {
+				return;
+			}
 		}
 		dateFill(datenow);
 		store.set('dateSwapped', datenow);
