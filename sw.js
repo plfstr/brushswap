@@ -2,7 +2,7 @@ const CACHE = 'rtbcache';
 var REQUIRED_FILES = [
   'index.html?20210223',
   'styles.css',
-  'app.js?20211203',
+  'app.js?20211204',
   'moment.min.js',
   'store.modern.min.js',
   'manifest.json'
