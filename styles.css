@@ -1,15 +1,12 @@
 /* Colour Vars */
 :root {
-	--rtb-times: #1f5ea5;/* #2366b1; */
-	--rtb-appbg: #2364ad;
-	--rtb-light: #8cf9da;
-	--rtb-middle: #59eac3;/* #4DDEB6; */
-	--rtb-dark: #2edaac;/* #30d8ac; *//* #16c598; */
-	--rtb-radius: 0em 1.25rem 0 1.25rem;
-}
-
-@-ms-viewport {
-	width: device-width;
+	--rtb-times: #354fb9;
+	--rtb-appbg: #d3eeff;
+	--rtb-light: #8bd4ff;
+	--rtb-middle: #00d2f4;
+	--rtb-dark: #51a5ff;
+	--rtb-radi: 1.75rem;
+	--rtb-shadow: rgba(0,0,50,0.1);
 }
 
 html {
@@ -26,15 +23,28 @@ html, body {
 	}
 
 body {
-	display: flex;
-	place-content: center; 
-	place-items: center;
-	padding: .75rem;
-	font: normal 100%/1.5 system-ui, -apple-system, "Segoe UI", Thonburi, "Lucida Grande", Arial, sans-serif;
+	padding: .25rem;
+	font: normal 100%/1.5 system-ui, -apple-system, "Open Sans Regular", "Segoe UI", Thonburi, "Lucida Grande", Arial, sans-serif;
 	text-align: center;
 	color: #fff;
-	background-color: #2364ad;
-	background-color: var(--rtb-appbg, #2364ad);
+	color: var(--rtb-times);
+	background-color: #d3eeff;
+	background-color: var(--rtb-appbg);
+}
+
+@media only screen and (min-height:480px) {
+	body {
+		padding: .75rem;
+		font-size: 112.5%;
+		display: flex;
+		place-content: center; 
+		place-items: center;
+	}
+
+	.wrap {
+		flex: 1 1 auto;
+		max-width: 480px;
+	}
 }
 
 header {overflow: auto}
@@ -50,16 +60,17 @@ header {overflow: auto}
 	clip-path: inset(100%);
 	clip: rect(0 0 0 0);
 	overflow: hidden;
+	overflow: clip;
 }
 
-.wrap {
+/* .wrap {
 	flex: 1 1 auto;
 	max-width: 480px;
-}
+} */
 
-.highlight {
-	color: #87f3d1;
-}
+/* .highlight {
+	color: inherit;
+} */
 
 .large {font-size: 3.75rem}
 
@@ -71,7 +82,7 @@ h3 {
 }
 
 h1, p, button {
-	margin: 0 auto 1.5rem;
+	margin: 0 auto 1rem;
 }
 
 h1 {
@@ -81,7 +92,7 @@ h1 {
 }
 
 .hero--font {
-	font-weight: bold;
+	font-weight: 800;
 }
 
 a {
@@ -109,27 +120,26 @@ time {
 	padding: 1.25rem 0;
 	border: 0;
 	margin-top: -1.25rem;
-	color: #2364ad;
-	color: var(--rtb-times);
-	border-radius: 0em 1.25rem 0 1.25rem;
-	border-radius: var(--rtb-radius);
-	contain: style;
-	--rtb-stripe: var(--rtb-stripe);
-	--rtb-stripe-prev: var(--rtb-middle);
 	background-color: var(--rtb-stripe, #59eac3);
+	color: var(--rtb-times);
+	border-radius: 0em var(--rtb-radi) 0 0;
 }
 
-.timer__value--start {
-	padding-bottom: 1.75rem;
+[class^='timer__value--'] time,
+[class^='timer__value--'] p {
+	font-size: 2.5rem;
+	padding: .5rem;
+	margin: -1rem auto -.5rem;
 }
 
-.timer__value--days time {
-    margin: -1rem auto -.5rem;
+[class^='timer__value--']:first-of-type {
+	margin-top: 0;
+	padding-bottom: 1.75rem;		
 }
 
-.timer__value--end {
-	border-bottom-right-radius: 1.5rem;
-	box-shadow: 0 .5rem rgba(0,0,0,0.2);
+[class^='timer__value--']:last-of-type {
+	border-bottom-right-radius: var(--rtb-radi);
+	border-bottom-left-radius: var(--rtb-radi);
 }
 
 [class^='timer__value--']:before,
@@ -172,10 +182,11 @@ time {
 }
 
 .timer__value--end {
+	color: var(--rtb-middle);
+	background-color: var(--rtb-times);
 	--rtb-stripe: var(--rtb-dark);
 	--rtb-stripe-prev: var(--rtb-middle);
 }
-
 
 button {
 	font-size: 2em;
@@ -183,31 +194,22 @@ button {
 	width: 100%;
 	cursor: pointer;
 	border-radius: .5rem;
-	color: #fff;
+	color: inherit;
 	background: none;
-	border: 3px solid #fff;
+	border: 2px solid currentColor;
 	border-radius: 1.5rem;
-	box-shadow: inset 0 -.5rem rgba(0,0,0,0.2);
+	box-shadow: inset 0 -.5rem var(--rtb-shadow, transparent);
 }
 
 @media only screen and (min-width:420px) {
 	button {
-		max-width: 80%;
+		max-width: 75%;
 	}
 }
 
-button:hover, 
-button:active,
-button:focus {
-	color: #2364ad;
-	border-color: #4DDEB6;
-	background-color: #4DDEB6;
+button:is(:hover, :active, :focus) {
+	background-color: var(--rtb-middle);
 	}
-
-button[disabled] {
-	color: #1e528d !important;
-	border-color: #1e528d !important;
-}
 
 footer {
 	letter-spacing: 0.025rem;
@@ -221,8 +223,12 @@ footer {
 }
 
 /* Animated FadeIn Effect */
-/* .has-updated time, */
-time {
+/* .has-updated time */
+.has-date time {
+	opacity: 0;
+}
+
+.has-date time {
 	animation: fadedates .5s ease-in .1s forwards;
 }
 
