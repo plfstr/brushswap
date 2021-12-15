@@ -1,5 +1,6 @@
 /* Colour Vars */
 :root {
+	--rtb-body: #354fb9;
 	--rtb-times: #354fb9;
 	--rtb-appbg: #d3eeff;
 	--rtb-light: #8bd4ff;
@@ -7,6 +8,15 @@
 	--rtb-dark: #51a5ff;
 	--rtb-radi: 1.75rem;
 	--rtb-shadow: rgba(0,0,50,0.1);
+}
+
+@media (prefers-color-scheme: dark) {
+	:root {
+		--rtb-body: #eee;
+		--rtb-times: #2d46aa;
+		--rtb-appbg: #1d2f77;
+		--rtb-middle: #16c5e1;
+	}
 }
 
 html {
@@ -26,8 +36,8 @@ body {
 	padding: .25rem;
 	font: normal 100%/1.5 system-ui, -apple-system, "Open Sans Regular", "Segoe UI", Thonburi, "Lucida Grande", Arial, sans-serif;
 	text-align: center;
-	color: #fff;
-	color: var(--rtb-times);
+	color: #354fb9;
+	color: var(--rtb-body);
 	background-color: #d3eeff;
 	background-color: var(--rtb-appbg);
 }
