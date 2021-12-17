@@ -153,12 +153,12 @@ time {
 	z-index: 51;
 	content: "";
 	display: block;
-	width: 2.25rem;
-	height: 2.25rem;
+	width: var(--rtb-radi);
+	height: var(--rtb-radi);
 	top: 0;
 	left: 0;
-	-webkit-transform: translate(0, -2.25rem);
-	transform: translate(0, -2.25rem);
+	-webkit-transform: translate(0, calc( 0px - var(--rtb-radi) ));
+	transform: translate(0, calc( 0px - var(--rtb-radi) ));
 	background-color: inherit;
 }
 
@@ -166,7 +166,7 @@ time {
 	width: 2.5em;
 	left: 0.0625rem;
 	z-index: 52;
-	border-bottom-left-radius: 3rem;	
+	border-bottom-left-radius: var(--rtb-radi);
 	background-color: var(--rtb-stripe-prev, transparent);
 }
 
