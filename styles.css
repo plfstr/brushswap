@@ -150,7 +150,6 @@ time {
 [class^='timer__value--']:before,
 [class^='timer__value--']:after {
 	position: absolute;
-	z-index: 51;
 	content: "";
 	display: block;
 	width: var(--rtb-radi);
@@ -160,14 +159,17 @@ time {
 	-webkit-transform: translate(0, calc( 0px - var(--rtb-radi) ));
 	transform: translate(0, calc( 0px - var(--rtb-radi) ));
 	background-color: inherit;
+	background-clip: border-box;
 }
 
 [class^='timer__value--']:after {
-	width: 2.5em;
 	left: 0.0625rem;
-	z-index: 52;
 	border-bottom-left-radius: var(--rtb-radi);
 	background-color: var(--rtb-stripe-prev, transparent);
+}
+
+.timer__value--days time {
+	text-transform: uppercase;
 }
 
 /*
