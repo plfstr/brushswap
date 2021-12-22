@@ -12,5 +12,18 @@
   "start_url": "index.html",
   "display": "standalone",
   "theme_color": "#354fb9",
-  "background_color": "#d3eeff"
+  "background_color": "#d3eeff",
+  "user_preferences": {
+      "color_scheme_dark": {
+          "theme_color": "#1d2f77",
+          "icons" : [
+              {
+                  "src": "webclip-512x512-maskable-dark.png",
+                  "sizes": "512x512",
+                  "type": "image/png",
+                  "purpose": "maskable any"
+              }
+          ]
+      }
+  }
 }
