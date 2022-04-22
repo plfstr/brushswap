@@ -3,7 +3,7 @@ var REQUIRED_FILES = [
   'index.html?20210223',
   'styles.css?20211215',
   'app.js?20211204',
-  'moment.min.js',
+  'moment.min.js?20220422',
   'store.modern.min.js',
   'manifest.json'
 ];
