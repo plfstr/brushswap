@@ -42,7 +42,7 @@ body {
 	background-color: var(--rtb-appbg);
 }
 
-@media only screen and (min-height:480px) {
+@media only screen and (min-height:800px) {
 	body {
 		padding: .75rem;
 		font-size: 112.5%;
