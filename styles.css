@@ -13,9 +13,9 @@
 @media (prefers-color-scheme: dark) {
 	:root {
 		--rtb-body: #eee;
-		--rtb-times: #2d46aa;
+		--rtb-times: #223a95;
 		--rtb-appbg: #1d2f77;
-		--rtb-middle: #16c5e1;
+		--rtb-middle: #08c2e0;
 	}
 }
 
