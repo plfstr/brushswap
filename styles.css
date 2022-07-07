@@ -229,8 +229,8 @@ footer {
 }
 
 dialog {
+	color: inherit;
 	border-radius: 1rem;
-	border-color: navy;
 }
 
 dialog button {
