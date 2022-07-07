@@ -163,27 +163,55 @@ function brushDate() {
 
 }
 
-	
-/**
-* @function brushSwap - Save to LocalStorage
-* @callback dateFill
-*/
-function brushSwap() {
 
-	/** @type {date} */	let datenow = moment();
-	
-	if ( dateValid( datenow ) ) {
-		if (storedDate) {
-			if (!confirm('Brush Changed. Create new date?')) {
-				return;
-			}
-		}
-		dateFill(datenow);
-		store.set('dateSwapped', datenow);
+/* 
+* @function confirmDialog - Dialog/confirm brush change 
+* @callback brushSwapped
+*/
+const domdialog = document.querySelector('dialog');
+const hasdialog = typeof domdialog.showModal === 'function';
+function confirmDialog() {
+
+	if (hasdialog) {
+		domdialog.showModal();
+		document.querySelector('#rtbdialogyes').addEventListener('click', function () {
+			domdialog.close();
+			brushSwapped();
+		}, {once: true})
+	} else {
+		!confirm('Brush Changed. Create new date?');
+		brushSwapped();
 	}
 
-	// Trigger fade-in effect
-	document.body.classList.add('has-updated');
+}
+
+
+/*
+* @function brushSwapped - Store new date, refresh UI
+*/
+function brushSwapped() {
+	try {
+		let datenow = moment();
+		dateFill(datenow);
+		store.set('dateSwapped', datenow);
+		document.body.classList.add('has-updated');
+	} catch(err) {
+		console.error(err);
+	}	
+}
+
+
+/**
+* @function brushSwap - Check stored date, conditionally ask for confirmation
+* @callback confirmDialog
+* @callback brushSwapped
+*/
+function brushSwap() {
+	if (storedDate) {
+		confirmDialog();
+	} else {
+		brushSwapped();
+	}
 }
 
 

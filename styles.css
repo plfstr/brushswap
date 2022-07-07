@@ -228,6 +228,23 @@ footer {
 	}
 }
 
+dialog {
+	color: inherit;
+	border-radius: 1rem;
+}
+
+dialog button {
+	font-size: 1.25rem;
+	padding: .5rem 1.5rem;
+	margin: .75rem;
+	width: auto;
+	background-clip: border-box;
+}
+
+dialog::backdrop {
+	background-color: rgba(0, 0, 70, .3);
+}
+
 /* Animated FadeIn Effect */
 /* .has-updated time */
 .has-date time {
