@@ -61,6 +61,14 @@ body {
 	}
 }
 
+@media only screen and (min-height: 728px) and (max-height: 900px) {
+	.wrap {
+		display: flex;
+		flex-flow: column nowrap;
+		justify-content: space-around;
+	}
+}
+
 header {overflow: auto}
 
 .hidden {
