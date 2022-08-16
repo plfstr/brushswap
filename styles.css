@@ -237,6 +237,10 @@ footer {
 	}
 }
 
+dialog:not([open]) {
+	display: none
+}
+
 dialog {
 	color: inherit;
 	border-radius: 1rem;
