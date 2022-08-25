@@ -70,8 +70,6 @@ body {
 	}
 }
 
-header {overflow: auto}
-
 .hidden {
 	position: absolute;
 	width: 1px;
