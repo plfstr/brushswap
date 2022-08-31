@@ -192,11 +192,15 @@ function confirmDialog() {
 function brushSwapped() {
 	try {
 		let datenow = moment();
-		dateFill(datenow);
 		store.set('dateSwapped', datenow);
+		dateFill(datenow);
 		document.body.classList.add('has-updated');
 	} catch(err) {
-		console.error(err);
+		if (err instanceof ReferenceError) { 
+			userMsg('Data Save Failed! Check browser cookie and storage settings and retry');
+		} else {
+			userMsg('Data Save Failed! Check browser settings and retry');
+		}
 	}	
 }
 
