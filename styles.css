@@ -269,6 +269,7 @@ dialog::backdrop {
 @keyframes fadedates {
 	from {
 		opacity: 0;
+		opacity: 0.00001; /* Chromevox fix */
 	} 
 	to {
 		opacity: 1;
