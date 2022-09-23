@@ -18,8 +18,26 @@ if ( !('visibilityState' in document) ) {
 }
 
 // Storage must be present for StoreJS to function...
-if ( typeof store !== 'undefined' && !store.enabled ) {
-	userMsg('Local storage is not supported by your browser. Please disable "Private Mode", or upgrade browser');
+var hasLocalstorage = () => {
+	try {
+		localStorage.setItem('retoothbrush', 'rtb');
+		localStorage.removeItem('retoothbrush');
+		return true;
+	} catch(e) {
+   	    userMsg('Local storage is not supported by your browser. Please disable "Private Mode", or upgrade browser');
+	    return e instanceof DOMException && (
+            // everything except Firefox
+            e.code === 22 ||
+            // Firefox
+            e.code === 1014 ||
+            // test name field too, because code might not be present
+            // everything except Firefox
+            e.name === 'QuotaExceededError' ||
+            // Firefox
+            e.name === 'NS_ERROR_DOM_QUOTA_REACHED') &&
+            // acknowledge QuotaExceededError only if there's something already stored
+            (storage && storage.length !== 0);
+	}
 }
 
 // Is HTTPS?
@@ -33,8 +51,8 @@ if ( window.isSecureContext === false ) {
  * @type {string}
  */
 var storedDate = null;
-if (typeof store !== 'undefined') {
-	storedDate = store.get('dateSwapped');
+if (hasLocalstorage) {
+	storedDate = localStorage.getItem('dateSwapped');
 }
 
 
@@ -192,7 +210,7 @@ function confirmDialog() {
 function brushSwapped() {
 	try {
 		let datenow = moment();
-		store.set('dateSwapped', datenow);
+		localStorage.setItem('dateSwapped', datenow);
 		dateFill(datenow);
 		document.body.classList.add('has-updated');
 	} catch(err) {
