@@ -3,7 +3,7 @@
 
 /**
 * @function userMsg - Provides feedback to user
-* @param {string} [msg] - User message
+* @param {string} [msg="Sorry, your browser lacks the features required by reToothbrush"] - User message
 */
 function userMsg(msg = "Sorry, your browser lacks the features required by reToothbrush") {
 	alert(msg);
