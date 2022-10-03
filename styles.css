@@ -28,11 +28,6 @@ html {
   box-sizing: inherit;
 }
 
-html, body {
-	height: 100%;
-	margin: 0;
-	}
-
 body {
 	padding: .5rem;
 	font: normal 100%/1.5 system-ui, -apple-system, "Open Sans Regular", "Segoe UI", Thonburi, "Lucida Grande", Arial, sans-serif;
@@ -48,6 +43,11 @@ body {
 }
 
 @media only screen and (min-height:800px), only screen and (min-width: 500px) {
+	html, body {
+		height: 100%;
+		margin: 0;
+	}
+	
 	body {
 		padding: .75rem;
 		font-size: 112.5%;
