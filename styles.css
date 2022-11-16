@@ -153,8 +153,7 @@ time {
 	border-bottom-left-radius: var(--rtb-radi);
 }
 
-[class^='timer__value--']:before,
-[class^='timer__value--']:after {
+[class^='timer__value--']:before {
 	position: absolute;
 	content: "";
 	display: block;
@@ -162,16 +161,11 @@ time {
 	height: var(--rtb-radi);
 	top: 0;
 	left: 0;
-	-webkit-transform: translate(0, calc( 0px - var(--rtb-radi) ));
-	transform: translate(0, calc( 0px - var(--rtb-radi) ));
+	-webkit-transform: translate(0, calc( 0px - var(--rtb-radi) + 0.0125rem ));
+	transform: translate(0, calc( 0px - var(--rtb-radi) + 0.0125rem ));
 	background-color: inherit;
 	background-clip: border-box;
-}
-
-[class^='timer__value--']:after {
-	left: 0.0625rem;
-	border-bottom-left-radius: var(--rtb-radi);
-	background-color: var(--rtb-stripe-prev, transparent);
+	mask: radial-gradient(farthest-side at top right,transparent 98%,#000 100%);
 }
 
 .timer__value--days time {
