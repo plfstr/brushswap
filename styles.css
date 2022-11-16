@@ -169,8 +169,7 @@ time {
 }
 
 [class^='timer__value--']:after {
-	left: 0.0625rem;
-	border-bottom-left-radius: var(--rtb-radi);
+	clip-path: circle(100% at 100% 0);
 	background-color: var(--rtb-stripe-prev, transparent);
 }
 
