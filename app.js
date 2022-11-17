@@ -55,6 +55,17 @@ if (hasLocalstorage) {
 	storedDate = localStorage.getItem('dateSwapped');
 }
 
+/**
+ * @var isstandalone
+ * @type {boolean}
+ */
+const isstandalone = navigator.standalone || window.matchMedia('(display-mode: standalone)').matches;
+if (storedData && !isstandalone) {
+	const banner = document.createElement('p');
+	banner.textContent = "Install app to homescreen to ensure data saved";
+	document.querySelector('#brushchange').after(banner);
+}
+
 
 /**
 *	@function dateChecked - Checks date value passed is valid date
