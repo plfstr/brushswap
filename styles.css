@@ -165,6 +165,7 @@ time {
 	transform: translate(0, calc( 0px - var(--rtb-radi) + 0.0125rem ));
 	background-color: inherit;
 	background-clip: border-box;
+	-webkit-mask: radial-gradient(farthest-side at top right,transparent 98%,#000 100%);
 	mask: radial-gradient(farthest-side at top right,transparent 98%,#000 100%);
 }
 
