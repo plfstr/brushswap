@@ -161,8 +161,8 @@ time {
 	height: var(--rtb-radi);
 	top: 0;
 	left: 0;
-	-webkit-transform: translate(0, calc( 0px - var(--rtb-radi) + 0.0125rem ));
-	transform: translate(0, calc( 0px - var(--rtb-radi) + 0.0125rem ));
+	-webkit-transform: translate(0, calc( 0px - var(--rtb-radi) + 0.0625rem ));
+	transform: translate(0, calc( 0px - var(--rtb-radi) + 0.0625rem ));
 	background-color: inherit;
 	background-clip: border-box;
 	-webkit-mask: radial-gradient(farthest-side at top right,transparent 98%,#000 100%);
