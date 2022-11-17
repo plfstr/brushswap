@@ -59,8 +59,8 @@ if (hasLocalstorage) {
  * @var isstandalone
  * @type {boolean}
  */
-const isstandalone = navigator.standalone || window.matchMedia('(display-mode: standalone)').matches;
-if (storedData && !isstandalone) {
+const isStandalone = navigator.standalone || window.matchMedia('(display-mode: standalone)').matches;
+if (storedDate && !isStandalone) {
 	const banner = document.createElement('p');
 	banner.textContent = "Install app to homescreen to ensure data saved";
 	document.querySelector('#brushchange').after(banner);
