@@ -37,6 +37,11 @@ body {
 	color: var(--rtb-body);
 	background-color: #d3eeff;
 	background-color: var(--rtb-appbg);
+	background-image: radial-gradient(#fff, var(--rtb-appbg));
+}
+
+@media (prefers-color-scheme: dark) {
+	background-image: none
 }
 
 .wrap {
