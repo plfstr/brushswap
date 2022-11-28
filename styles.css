@@ -41,7 +41,9 @@ body {
 }
 
 @media (prefers-color-scheme: dark) {
+    body {
 	background-image: none
+    }
 }
 
 .wrap {
