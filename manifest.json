@@ -1,6 +1,6 @@
 {
-  "name": "reToothbrush",
-  "short_name" : "reToothbrsh",
+  "name": "Brush Swap",
+  "short_name" : "Brush Swap",
   "icons": [
     {
       "src": "webclip-512x512-maskable.png",
