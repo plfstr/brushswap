@@ -47,6 +47,7 @@ body {
 }
 
 .wrap {
+	margin: auto;
 	max-width: 480px
 }
 
