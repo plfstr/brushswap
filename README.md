@@ -1,4 +1,4 @@
-# retoothbrush
+# Brush Swap
 
 ## When did you last change your toothbrush?
 
