@@ -224,6 +224,11 @@ function brushSwapped() {
 		localStorage.setItem('dateSwapped', datenow);
 		dateFill(datenow);
 		document.body.classList.add('has-updated');
+		if (navigator.clearClientBadge) {
+			navigator.clearClientBadge().catch((error) => {
+				console.error(error);
+			});
+		}
 	} catch(err) {
 		if (err instanceof ReferenceError) { 
 			userMsg('Data Save Failed! Check browser cookie and storage settings and retry');
@@ -288,4 +293,13 @@ if ("serviceWorker" in navigator) {
 		  console.log('Registration failed with ' + error);
 		});
 	}
+}
+
+/**
+ * Stored date expired icon badging...
+ */
+if (navigator.setClientBadge && storedDate && moment().isAfter(storedDate)) {
+    navigator.setClientBadge().catch((error) => {
+      console.error(error);
+    });
 }
