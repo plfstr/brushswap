@@ -298,7 +298,7 @@ if ("serviceWorker" in navigator) {
 /**
  * Stored date expired icon badging...
  */
-if (navigator.setClientBadge && storedDate && moment().isAfter(storedDate)) {
+if (navigator.setClientBadge && storedDate && moment().isAfter( moment(storedDate).add(90, 'days') )) {
     navigator.setClientBadge().catch((error) => {
       console.error(error);
     });
