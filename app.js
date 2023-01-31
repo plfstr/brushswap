@@ -73,7 +73,7 @@ if (storedDate && !isStandalone) {
 *	@return {boolean}
 */
 function dateValid( dateChecked ) {
-	return moment(dateChecked).isValid();
+	return dayjs(dateChecked).isValid();
 }
 
 
@@ -104,7 +104,7 @@ function dayPlural(daysRemaining) {
 function dateUtc( dateIn ){
 	
 	if ( dateValid(dateIn) ) {
-		return moment(dateIn).utc().format();
+		return dayjs(dateIn).format();
 	}
 	
 }
@@ -118,22 +118,22 @@ class makeDates {
 	/** @param {date} datechanged */
 	constructor (datechanged) {
 		/** @type {date} */
-		this.date = moment(datechanged);
+		this.date = dayjs(datechanged);
 	}
 
 	/** @returns {date} */
 	_dateStart() {
-		return this.date;
+		return dayjs(this.date).format();
 	}
 
 	/** @returns {date} */
 	_dateEnd() {
-		return moment(this.date).add(90, 'days');
+		return dayjs(this.date).add(90, 'day').format();
 	}
 	
 	/** @returns {number} */
 	_dateDayremain() {
-		return Math.max(0, this._dateEnd().diff(moment(), 'days') );
+		return Math.abs( dayjs(new Date()).diff(end, 'day') );
 	}
 
 	/** @returns {object} */
@@ -161,7 +161,7 @@ function dateFill(datechanged) {
 		let	domDayend = document.querySelector('#dayEnd');		
 		
 		// Date Start		
-		domDaystart.textContent = datestart.format('DD/MM/YYYY');
+		domDaystart.textContent = dayjs(datestart).format('DD/MM/YYYY');
 		domDaystart.setAttribute('datetime', `${dateUtc(datestart)}`);
 
 		// Days Remain
@@ -169,7 +169,7 @@ function dateFill(datechanged) {
 		domDayremain.setAttribute('datetime', `P ${dateremain} D`);
 		
 		// Date End
-		domDayend.textContent = dateend.format('DD/MM/YYYY');
+		domDayend.textContent = dayjs(dateend).format('DD/MM/YYYY');
 		domDayend.setAttribute('datetime', `${dateUtc(dateend)}`);
 	
 	}
@@ -220,7 +220,7 @@ function confirmDialog() {
 */
 function brushSwapped() {
 	try {
-		let datenow = moment();
+		let datenow = dayjs().format();
 		localStorage.setItem('dateSwapped', datenow);
 		dateFill(datenow);
 		document.body.classList.add('has-updated');
@@ -298,7 +298,7 @@ if ("serviceWorker" in navigator) {
 /**
  * Stored date expired icon badging...
  */
-if (navigator.setClientBadge && storedDate && moment().isAfter( moment(storedDate).add(90, 'days') )) {
+if (navigator.setClientBadge && storedDate && dayjs(storedDate).add(90, 'day') < dayjs() ) {
     navigator.setClientBadge().catch((error) => {
       console.error(error);
     });
