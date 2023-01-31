@@ -133,7 +133,7 @@ class makeDates {
 	
 	/** @returns {number} */
 	_dateDayremain() {
-		return Math.abs( dayjs(new Date()).diff(this._dateEnd(), 'day') );
+		return Math.abs( Math.min(0, dayjs(new Date()).diff(this._dateEnd(), 'day') ) );
 	}
 
 	/** @returns {object} */
