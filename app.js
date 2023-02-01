@@ -3,9 +3,9 @@
 
 /**
 * @function userMsg - Provides feedback to user
-* @param {string} [msg="Sorry, your browser lacks the features required by reToothbrush"] - User message
+* @param {string} [msg="Sorry, your browser lacks the features required by Brush Swap"] - User message
 */
-function userMsg(msg = "Sorry, your browser lacks the features required by reToothbrush") {
+function userMsg(msg = "Sorry, your browser lacks the features required by Brush Swap") {
 	alert(msg);
 	console.error(msg);
 	document.querySelector('#brushchange').setAttribute('disabled', 'disabled');
