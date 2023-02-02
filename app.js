@@ -224,8 +224,8 @@ function brushSwapped() {
 		localStorage.setItem('dateSwapped', datenow);
 		dateFill(datenow);
 		document.body.classList.add('has-updated');
-		if (navigator.clearClientBadge) {
-			navigator.clearClientBadge().catch((error) => {
+		if (navigator.clearAppBadge) {
+			navigator.clearAppBadge().catch((error) => {
 				console.error(error);
 			});
 		}
@@ -298,8 +298,8 @@ if ("serviceWorker" in navigator) {
 /**
  * Stored date expired icon badging...
  */
-if (navigator.setClientBadge && storedDate && dayjs(storedDate).add(90, 'day') < dayjs() ) {
-    navigator.setClientBadge().catch((error) => {
+if (navigator.setAppBadge && storedDate && dayjs(storedDate).add(90, 'day') < dayjs() ) {
+    navigator.setAppBadge().catch((error) => {
       console.error(error);
     });
 }
