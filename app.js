@@ -166,7 +166,7 @@ function dateFill(datechanged) {
 
 		// Days Remain
 		domDayremain.textContent = `${ dayPlural(dateremain) }`;
-		domDayremain.setAttribute('datetime', `P ${dateremain} D`);
+		domDayremain.setAttribute('datetime', `P${dateremain}D`);
 		
 		// Date End
 		domDayend.textContent = dayjs(dateend).format('DD/MM/YYYY');
