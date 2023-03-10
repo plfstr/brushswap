@@ -56,12 +56,21 @@ if (hasLocalstorage) {
 }
 
 /**
- * @var isstandalone
+ * @var matchesView
+ * @type {string | undefined}
+ */
+const matchesView = ['browser','minimal-ui','fullscreen','standalone'].find((which) => {
+	return window.matchMedia(`(display-mode: ${which})`).matches;
+})
+/**
+ * @var installPrompt - Detects is standalone, is Firefox mobile, is desktop
  * @type {boolean}
  */
-const isStandalone = window.matchMedia('(display-mode: standalone)').matches;
-if (storedDate && !isStandalone) {
+const installPrompt = !(matchesView === 'standalone' || matchesView === undefined || window.matchMedia('(pointer: fine)').matches);
+
+if (storedDate && !document.querySelector('#datainstallprompt') && installPrompt) {
 	const banner = document.createElement('p');
+	banner.id = "datainstallprompt";
 	banner.textContent = "Install app to homescreen to ensure data saved";
 	document.querySelector('#brushchange').after(banner);
 }
