@@ -59,7 +59,7 @@ if (hasLocalstorage) {
  * @var isstandalone
  * @type {boolean}
  */
-const isStandalone = window.matchMedia('(display-mode: standalone)').matches;
+const isStandalone = window.matchMedia('(display-mode: standalone)').matches || ( window.navigator.userAgent.includes('Gecko') && window.navigator.userAgent.includes('rv:') );
 if (storedDate && !isStandalone) {
 	const banner = document.createElement('p');
 	banner.textContent = "Install app to homescreen to ensure data saved";
