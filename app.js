@@ -252,26 +252,10 @@ function brushSwap() {
 	}
 }
 
-
-// Once Event Listener Test / Polyfill
-/** 
- * @var supportsOnce
- * @type {boolean} 
- */
-var supportsOnce = false;
-try {
-	let opts = Object.defineProperty({}, 'once', {
-		get: function() {
-			supportsOnce = true;
-		}
-	});
-	window.addEventListener("test", null, opts);
-} catch (e) {} 
-
 /*
 * DOMContentLoaded
 */
-document.addEventListener('DOMContentLoaded', brushDate, supportsOnce? { once: true } : false);
+document.addEventListener('DOMContentLoaded', brushDate, {once: true});
 
 /*
 * Button Listener
