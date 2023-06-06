@@ -152,7 +152,7 @@ function dateFill(datechanged) {
 
 	if ( dateValid(datechanged) ) {
 		
-		/** @type {object} */
+		/** @type {{datestart: Date, dateremain: Number, dateend: Date}} */
 		let {datestart, dateremain, dateend} = new makeDates(datechanged).brushDates;
 		
 		// Vars
