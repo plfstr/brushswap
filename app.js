@@ -48,7 +48,7 @@ if ( window.isSecureContext === false ) {
 
 /** 
  * @var storedDate - checks typeof to keep Chrome happy, gets stored date
- * @type {string}
+ * @type {string | null}
  */
 var storedDate = null;
 if (hasLocalstorage) {
