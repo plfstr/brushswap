@@ -6,7 +6,7 @@
 * @param {string} [msg="Sorry, your browser lacks the features required by Brush Swap"] - User message
 */
 function userMsg(msg = "Sorry, your browser lacks the features required by Brush Swap") {
-	alert(msg);
+	alertDialog(msg);
 	console.error(msg);
 	document.querySelector('#brushchange').setAttribute('disabled', 'disabled');
 	return;
@@ -197,7 +197,7 @@ function brushDate() {
 * @function confirmDialog - Dialog/confirm brush change 
 * @callback brushSwapped
 */
-const domdialog = document.querySelector('dialog');
+const domdialog = document.querySelector('#rtbconfirm');
 const hasdialog = typeof domdialog.showModal === 'function';
 function confirmDialog() {
 
@@ -214,6 +214,20 @@ function confirmDialog() {
 
 }
 
+/*
+* @function alertDialog - Alert dialog
+*/
+const domalert = document.querySelector('#rtbalert');
+function alertDialog(msg) {
+
+	if (hasdialog) {
+		domalert.showModal();
+	} else {
+		!confirm(msg);
+		return;
+	}
+
+}
 
 /*
 * @function brushSwapped - Store new date, refresh UI
