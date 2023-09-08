@@ -55,16 +55,22 @@ if (hasLocalstorage) {
 	storedDate = localStorage.getItem('dateSwapped');
 }
 
+
 /**
- * @var isstandalone
+ * @var ispersisted
  * @type {boolean}
  */
-const isStandalone = window.matchMedia('(display-mode: standalone)').matches || ( window.navigator.userAgent.includes('Gecko') && window.navigator.userAgent.includes('rv:') );
-if (storedDate && !isStandalone) {
-	const banner = document.createElement('p');
-	banner.textContent = "Install app to homescreen to ensure data saved";
-	document.querySelector('#brushchange').after(banner);
+let ispersisted = false;
+if (navigator.storage && navigator.storage.persist) {
+	ispersisted = await navigator.storage.persisted();
 }
+
+
+/**
+ * @var noprompt
+ * @type {boolean}
+ */
+const noprompt = window.matchMedia('(display-mode: standalone)').matches || ispersisted;
 
 
 /**
@@ -249,6 +255,19 @@ function brushSwap() {
 		confirmDialog();
 	} else {
 		brushSwapped();
+	}
+}
+
+
+/*
+* If stored data and not persisted, display install prompt!
+*/
+if (storedDate && !noprompt) {
+	if ( !document.querySelector('#installprompt' )) {
+		const banner = document.createElement('p');
+		banner.id = "installprompt";
+		banner.textContent = "Install app to homescreen to ensure data saved";
+		document.querySelector('#brushchange').after(banner);
 	}
 }
 
