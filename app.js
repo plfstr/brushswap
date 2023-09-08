@@ -62,7 +62,9 @@ if (hasLocalstorage) {
  */
 let ispersisted = false;
 if (navigator.storage && navigator.storage.persist) {
-	ispersisted = await navigator.storage.persisted();
+	navigator.storage.persisted().then((persistence) => {
+		ispersisted = persistence;
+	})
 }
 
 
