@@ -237,6 +237,7 @@ function brushSwapped() {
 				console.error(error);
 			});
 		}
+		deferredPrompt.prompt();
 	} catch(err) {
 		if (err instanceof ReferenceError) { 
 			userMsg('Data Save Failed! Check browser cookie and storage settings and retry');
@@ -308,3 +309,12 @@ if (navigator.setAppBadge && storedDate && dayjs(storedDate).add(90, 'day') < da
       console.error(error);
     });
 }
+
+/**
+* Delay PWA install prompt. Call after brush swap...
+*/
+let deferredPrompt;
+window.addEventListener('beforeinstallprompt', (e) => {
+  e.preventDefault();
+  deferredPrompt = e;
+});
