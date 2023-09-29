@@ -45,6 +45,10 @@ if ( window.isSecureContext === false ) {
 	userMsg('Local storage is disabled by your browser in non-secure(HTTP) contexts. Check page URL is secure with ‘HTTPS’ (padlock symbol).');
 }
 
+// Has cookies enabled?
+if (!navigator.cookieEnabled) {
+	userMsg('Cookies are disabled. Enable to allow the date to be saved.');
+}
 
 /** 
  * @var storedDate - checks typeof to keep Chrome happy, gets stored date
@@ -55,6 +59,28 @@ if (hasLocalstorage) {
 	storedDate = localStorage.getItem('dateSwapped');
 }
 
+/**
+ * @var COOKIEVAR
+ * @type {string}
+ */
+const COOKIEVAR = '__Secure-brushswapped';
+// Move existing localstorage data to cookie...
+if (storedDate) {
+	try {
+		document.cookie = `${COOKIEVAR}=${storedDate}; max-age=15552000; Secure`;
+	} catch(err) {
+		console.error('Issue moving data!', err);
+	}
+}
+/**
+ * @var hasCookie
+ * @type {string}
+ */
+const hasCookie = document.cookie.split("; ").find((row) => row.startsWith(COOKIEVAR));
+if (storedDate === null && hasCookie !== undefined) {
+	// Set storedDate to cookie value...
+	storedDate = hasCookie.split("=")[1];
+}
 
 /**
  * @var ispersisted
@@ -229,7 +255,10 @@ function confirmDialog() {
 function brushSwapped() {
 	try {
 		let datenow = dayjs().format();
-		localStorage.setItem('dateSwapped', datenow);
+		document.cookie = `${COOKIEVAR}=${datenow}; max-age=15552000; Secure`;
+		if (localStorage.getItem('dateSwapped')) {
+			localStorage.removeItem('dateSwapped');
+		}
 		dateFill(datenow);
 		document.body.classList.add('has-updated');
 		if (navigator.clearAppBadge) {
