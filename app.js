@@ -221,6 +221,7 @@ const domalert = document.querySelector('#rtbalert');
 function alertDialog(msg) {
 
 	if (hasdialog) {
+		domalert.querySelector(':scope p').textContent = msg;
 		domalert.showModal();
 	} else {
 		!confirm(msg);
