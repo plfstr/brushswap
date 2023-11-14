@@ -211,10 +211,11 @@ function confirmDialog() {
 
 	if (hasdialog) {
 		domdialog.showModal();
-		document.querySelector('#rtbdialogyes').addEventListener('click', function () {
-			domdialog.close();
-			brushSwapped();
-		}, {once: true})
+		domdialog.addEventListener("close", () => {
+			if (domdialog.returnValue === 'true') {
+				brushSwapped();
+			}
+		});
 	} else {
 		!confirm('Brush Changed. Create new date?');
 		brushSwapped();
