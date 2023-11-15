@@ -21,22 +21,16 @@ event.waitUntil(
   );
 });
 
-self.addEventListener('fetch', function(event) {
-  event.respondWith(
-    caches.match(event.request)
-      .then(function(response) {
-        if (response) {
-          console.log(
-            '[fetch] Returning from ServiceWorker cache: ',
-            event.request.url
-          );
-          return response;
-        }
-        console.log('[fetch] Returning from server: ', event.request.url);
-        return fetch(event.request);
-      }
-    )
-  );
+self.addEventListener('fetch', event => {
+  event.respondWith(async () => {
+      const cache = await caches.open(CACHE);
+      const cachedResponse = await cache.match(event.request);
+      if (cachedResponse !== undefined) {
+          return cachedResponse;
+      } else {
+          return fetch(event.request)
+      };
+  });
 });
 
 self.addEventListener('activate', function(event) {
