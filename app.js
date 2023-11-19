@@ -253,7 +253,9 @@ function brushSwapped() {
 				console.error(error);
 			});
 		}
-		deferredPrompt.prompt();
+		if (deferredPrompt) {
+			deferredPrompt.prompt();
+		}
 	} catch(err) {
 		if (err instanceof ReferenceError) { 
 			userMsg('Data Save Failed! Check browser cookie and storage settings and retry');
