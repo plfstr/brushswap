@@ -275,6 +275,9 @@ function brushSwap() {
 	if (storedDate) {
 		confirmDialog();
 	} else {
+		if (window.navigator.standalone === 'false') {
+			userMsg('Install app to home screen to ensure data saved');
+		}
 		brushSwapped();
 	}
 }
