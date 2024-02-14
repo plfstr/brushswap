@@ -27,12 +27,6 @@
 	initial-value: transparent;
 }
 
-@property --rtb-stripe-prev {
-	syntax: "color";
-	inherits: true;
-	initial-value: transparent;
-}
-
 html {
   box-sizing: border-box;
 }
@@ -203,19 +197,15 @@ time {
 */
 .timer__value--start {
 	--rtb-stripe: var(--rtb-light);
-	--rtb-stripe-prev: var(--rtb-appbg);
 }
 
 .timer__value--days {
 	--rtb-stripe: var(--rtb-middle);
-	--rtb-stripe-prev: var(--rtb-light);
 }
 
 .timer__value--end {
 	color: var(--rtb-middle);
-	background-color: var(--rtb-times);
-	--rtb-stripe: var(--rtb-dark);
-	--rtb-stripe-prev: var(--rtb-middle);
+	--rtb-stripe: var(--rtb-times);
 }
 
 button {
