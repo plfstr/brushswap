@@ -213,8 +213,7 @@ time {
 
 .timer__value--end {
 	color: var(--rtb-middle);
-	background-color: var(--rtb-times);
-	--rtb-stripe: var(--rtb-dark);
+	--rtb-stripe: var(--rtb-times);
 	--rtb-stripe-prev: var(--rtb-middle);
 }
 
