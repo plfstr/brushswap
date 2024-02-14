@@ -21,6 +21,18 @@
 	}
 }
 
+@property --rtb-stripe {
+	syntax: "color";
+	inherits: true;
+	initial-value: transparent;
+}
+
+@property --rtb-stripe-prev {
+	syntax: "color";
+	inherits: true;
+	initial-value: transparent;
+}
+
 html {
   box-sizing: border-box;
 }
