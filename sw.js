@@ -44,3 +44,7 @@ self.addEventListener('activate', function(event) {
   console.log('[activate] Claiming this ServiceWorker!');
   event.waitUntil(self.clients.claim());
 });
+
+self.addEventListener('error', err => {
+  console.error(err.message);
+});
