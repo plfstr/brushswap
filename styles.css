@@ -22,7 +22,7 @@
 }
 
 @property --rtb-stripe {
-	syntax: "color";
+	syntax: "<color>";
 	inherits: true;
 	initial-value: transparent;
 }
