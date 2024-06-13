@@ -131,6 +131,7 @@ a {
 	
 time {
 	display: block;
+	text-transform: uppercase;
 	font-variant-numeric: tabular-nums;
 }
 
@@ -183,10 +184,6 @@ time {
 	background-clip: border-box;
 	-webkit-mask: radial-gradient(farthest-side at top right,transparent 98%,#000 100%);
 	mask: radial-gradient(farthest-side at top right,transparent 98%,#000 100%);
-}
-
-.timer__value--days time {
-	text-transform: uppercase;
 }
 
 /*
