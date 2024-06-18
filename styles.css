@@ -19,7 +19,6 @@
 		--rtb-appbg: #aadeff;
 		--rtb-light: #8bd4ff;
 		--rtb-middle: #17d1f0;
-		--rtb-shadow: rgba(0,0,50,0.1);
 	}
 	
 	@media (prefers-color-scheme: dark) {
