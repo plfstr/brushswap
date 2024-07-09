@@ -168,20 +168,22 @@ a {
 	border-bottom-left-radius: var(--rtb-radi);
 }
 
-[class^='timer__value--']:before {
-	position: absolute;
-	content: "";
-	display: block;
-	width: var(--rtb-radi);
-	height: var(--rtb-radi);
-	top: 0;
-	left: 0;
-	-webkit-transform: translate(0, calc( 0px - var(--rtb-radi) + 0.0625rem ));
-	transform: translate(0, calc( 0px - var(--rtb-radi) + 0.0625rem ));
-	background-color: inherit;
-	background-clip: border-box;
-	-webkit-mask: radial-gradient(farthest-side at top right,transparent 98%,#000 100%);
-	mask: radial-gradient(farthest-side at top right,transparent 98%,#000 100%);
+@supports (mask:radial-gradient(farthest-side at top right,transparent 98%,#000 100%)) or (-webkit-mask:radial-gradient(farthest-side at top right,transparent 98%,#000 100%)) {
+	[class^='timer__value--']:before {
+		position: absolute;
+		content: "";
+		display: block;
+		width: var(--rtb-radi);
+		height: var(--rtb-radi);
+		top: 0;
+		left: 0;
+		-webkit-transform: translate(0, calc( 0px - var(--rtb-radi) + 0.0625rem ));
+		transform: translate(0, calc( 0px - var(--rtb-radi) + 0.0625rem ));
+		background-color: inherit;
+		background-clip: border-box;
+		-webkit-mask: radial-gradient(farthest-side at top right,transparent 98%,#000 100%);
+		mask: radial-gradient(farthest-side at top right,transparent 98%,#000 100%);
+	}
 }
 
 /*
