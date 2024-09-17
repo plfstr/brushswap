@@ -130,23 +130,18 @@ class makeDates {
 	}
 
 	/** @returns {date} */
-	_dateStart() {
+	get dateStart() {
 		return dayjs(this.date).format();
 	}
 
 	/** @returns {date} */
-	_dateEnd() {
+	get dateEnd() {
 		return dayjs(this.date).add(90, 'day').format();
 	}
 	
 	/** @returns {number} */
-	_dateDayremain() {
+	get dateDayremain() {
 		return Math.abs( Math.min(0, dayjs(new Date()).diff(this._dateEnd(), 'day') ) );
-	}
-
-	/** @returns {object} */
-	get brushDates() {
-		return {datestart: this._dateStart(), dateremain: this._dateDayremain(), dateend: this._dateEnd()}
 	}
 	
 }
@@ -160,8 +155,8 @@ function dateFill(datechanged) {
 
 	if ( dateValid(datechanged) ) {
 		
-		/** @type {{datestart: Date, dateremain: Number, dateend: Date}} */
-		let {datestart, dateremain, dateend} = new makeDates(datechanged).brushDates;
+		/** @type {Object} */
+		const makedate = new makeDates(datechanged);
 		
 		// Vars
 		let domDaystart = document.querySelector('#dayStart');
@@ -169,16 +164,16 @@ function dateFill(datechanged) {
 		let	domDayend = document.querySelector('#dayEnd');		
 		
 		// Date Start		
-		domDaystart.textContent = dayjs(datestart).format('DD/MM/YYYY');
-		domDaystart.setAttribute('datetime', `${dateUtc(datestart)}`);
+		domDaystart.textContent = dayjs(makedate.dateStart).format('DD/MM/YYYY');
+		domDaystart.setAttribute('datetime', `${dateUtc(makedate.dateStart)}`);
 
 		// Days Remain
-		domDayremain.textContent = `${ dayPlural(dateremain) }`;
-		domDayremain.setAttribute('datetime', `P${dateremain}D`);
+		domDayremain.textContent = `${ dayPlural(makedate.dateDayremain) }`;
+		domDayremain.setAttribute('datetime', `P${makedate.dateDayremain}D`);
 		
 		// Date End
-		domDayend.textContent = dayjs(dateend).format('DD/MM/YYYY');
-		domDayend.setAttribute('datetime', `${dateUtc(dateend)}`);
+		domDayend.textContent = dayjs(makedate.dateEnd).format('DD/MM/YYYY');
+		domDayend.setAttribute('datetime', `${dateUtc(makedate.dateEnd)}`);
 	
 	}
 		
