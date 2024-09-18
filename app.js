@@ -123,25 +123,27 @@ function dateUtc( dateIn ){
 */
 class makeDates {
 
+	#date;
+
 	/** @param {date} datechanged */
 	constructor (datechanged) {
-		/** @type {date} */
-		this.date = dayjs(datechanged);
+		/** @private */
+		this.#date = dayjs(datechanged);
 	}
 
 	/** @returns {date} */
 	get dateStart() {
-		return dayjs(this.date).format();
+		return dayjs(this.#date).format();
 	}
 
 	/** @returns {date} */
 	get dateEnd() {
-		return dayjs(this.date).add(90, 'day').format();
+		return dayjs(this.#date).add(90, 'day').format();
 	}
 	
 	/** @returns {number} */
 	get dateDayremain() {
-		return Math.abs( Math.min(0, dayjs(new Date()).diff(this._dateEnd(), 'day') ) );
+		return Math.abs( Math.min(0, dayjs(new Date()).diff(this.dateEnd(), 'day') ) );
 	}
 	
 }
