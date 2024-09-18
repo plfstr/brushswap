@@ -1,6 +1,14 @@
 // @ts-check
 'use strict';
 
+// Vars
+/** @type {HTMLElement} */
+let domDaystart = document.querySelector('#dayStart');
+/** @type {HTMLElement} */
+let	domDayremain = document.querySelector('#dayRemaining');
+/** @type {HTMLElement} */
+let	domDayend = document.querySelector('#dayEnd');
+
 /**
 * @function userMsg - Provides feedback to user
 * @param {string} [msg="Sorry, your browser lacks the features required by Brush Swap"] - User message
@@ -162,11 +170,6 @@ function dateFill(datechanged) {
 		
 		/** @type {{datestart: Date, dateremain: Number, dateend: Date}} */
 		let {datestart, dateremain, dateend} = new makeDates(datechanged).brushDates;
-		
-		// Vars
-		let domDaystart = document.querySelector('#dayStart');
-		let	domDayremain = document.querySelector('#dayRemaining');
-		let	domDayend = document.querySelector('#dayEnd');		
 		
 		// Date Start		
 		domDaystart.textContent = dayjs(datestart).format('DD/MM/YYYY');
