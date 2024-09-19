@@ -158,7 +158,7 @@ function dateFill(datechanged) {
 	if ( dateValid(datechanged) ) {
 		
 		/** @type {Object} */
-		const makedate = new makeDates(datechanged);
+		const swapdate = new makeDates(datechanged);
 		
 		// Vars
 		let domDaystart = document.querySelector('#dayStart');
@@ -166,16 +166,16 @@ function dateFill(datechanged) {
 		let	domDayend = document.querySelector('#dayEnd');		
 		
 		// Date Start		
-		domDaystart.textContent = dayjs(makedate.dateStart).format('DD/MM/YYYY');
-		domDaystart.setAttribute('datetime', `${dateUtc(makedate.dateStart)}`);
+		domDaystart.textContent = dayjs(swapdate.dateStart).format('DD/MM/YYYY');
+		domDaystart.setAttribute('datetime', `${dateUtc(swapdate.dateStart)}`);
 
 		// Days Remain
-		domDayremain.textContent = `${ dayPlural(makedate.dateDayremain) }`;
-		domDayremain.setAttribute('datetime', `P${makedate.dateDayremain}D`);
+		domDayremain.textContent = `${ dayPlural(swapdate.dateDayremain) }`;
+		domDayremain.setAttribute('datetime', `P${swapdate.dateDayremain}D`);
 		
 		// Date End
-		domDayend.textContent = dayjs(makedate.dateEnd).format('DD/MM/YYYY');
-		domDayend.setAttribute('datetime', `${dateUtc(makedate.dateEnd)}`);
+		domDayend.textContent = dayjs(swapdate.dateEnd).format('DD/MM/YYYY');
+		domDayend.setAttribute('datetime', `${dateUtc(swapdate.dateEnd)}`);
 	
 	}
 		
