@@ -7,9 +7,6 @@
 */
 function userMsg(msg = "Sorry, your browser lacks the features required by Brush Swap") {
 	alertDialog(msg);
-	console.error(msg);
-	document.querySelector('#brushchange').setAttribute('disabled', 'disabled');
-	return;
 }
 
 //  Mustard Cut
