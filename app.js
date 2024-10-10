@@ -7,9 +7,6 @@
 */
 function userMsg(msg = "Sorry, your browser lacks the features required by Brush Swap") {
 	alertDialog(msg);
-	console.error(msg);
-	document.querySelector('#brushchange').setAttribute('disabled', 'disabled');
-	return;
 }
 
 //  Mustard Cut
@@ -55,24 +52,14 @@ if (hasLocalstorage) {
 	storedDate = localStorage.getItem('dateSwapped');
 }
 
-
-/**
- * @var ispersisted
- * @type {boolean}
- */
-let ispersisted = false;
-if (navigator.storage && navigator.storage.persist) {
+// Check storage persisted and prompt if not
+if (storedDate && navigator.storage && navigator.storage.persist) {
 	navigator.storage.persisted().then((persistence) => {
-		ispersisted = persistence;
+		if (!persistence) {
+			userMsg('Brush Swap date will be lost without ‘Persistant Storage‘ persmission. \n Allow this browser permission, or install app to homescreen.');
+		}
 	})
 }
-
-
-/**
- * @var noprompt
- * @type {boolean}
- */
-const noprompt = window.matchMedia('(display-mode: standalone)').matches || ispersisted;
 
 
 /**
@@ -245,6 +232,13 @@ function brushSwapped() {
 		localStorage.setItem('dateSwapped', datenow);
 		dateFill(datenow);
 		document.body.classList.add('has-updated');
+		if (navigator.storage && navigator.storage.persist) {
+			navigator.storage.persist().then((persistence) => {
+				if (!persistence) {
+					userMsg('Brush Swap date will be lost without ‘Persistant Storage‘ persmission. \n Allow this browser permission, or install app to homescreen.');
+				}
+			})
+		}
 		if (navigator.clearAppBadge) {
 			navigator.clearAppBadge().catch((error) => {
 				console.error(error);
@@ -276,18 +270,6 @@ function brushSwap() {
 	}
 }
 
-
-/*
-* If stored data and not persisted, display install prompt!
-*/
-if (storedDate && !noprompt) {
-	if ( !document.querySelector('#installprompt' )) {
-		const banner = document.createElement('p');
-		banner.id = "installprompt";
-		banner.textContent = "Install app to homescreen to ensure data saved";
-		document.querySelector('#brushchange').after(banner);
-	}
-}
 
 /*
 * DOMContentLoaded
