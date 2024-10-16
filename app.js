@@ -56,7 +56,7 @@ if (hasLocalstorage) {
 if (storedDate && navigator.storage && navigator.storage.persist) {
 	navigator.storage.persisted().then((persistence) => {
 		if (!persistence) {
-			userMsg('Brush Swap date will be lost without ‘Persistant Storage‘ persmission. \n Allow this browser permission, or install app to homescreen.');
+			userMsg('Brush Swap date will be lost without ‘Persistant Storage‘ permission. \n Allow this browser permission, or install app to homescreen.');
 		}
 	})
 }
