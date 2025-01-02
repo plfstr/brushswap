@@ -156,6 +156,11 @@ a {
 	line-height: 1;
 	font-variant-numeric: tabular-nums;
 	text-transform: uppercase;
+	transition: opacity .3s ease;
+	opacity: 1;
+	@starting-style {
+	    opacity: .5;
+	}
 }
 
 [class^='timer__value--']:first-of-type {
@@ -261,24 +266,4 @@ dialog button {
 
 dialog::backdrop {
 	background-color: rgba(0, 0, 70, .3);
-}
-
-/* Animated FadeIn Effect */
-/* .has-updated time */
-.has-date time {
-	opacity: 0;
-}
-
-.has-date time {
-	animation: fadedates .5s ease-in .1s forwards;
-}
-
-@keyframes fadedates {
-	from {
-		opacity: 0;
-		opacity: 0.00001; /* Chromevox fix */
-	} 
-	to {
-		opacity: 1;
-	}
 }
