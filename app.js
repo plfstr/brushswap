@@ -73,20 +73,17 @@ function dateValid( dateChecked ) {
 
 
 /**
-* @function - Days Remaining Plural String Function. New Intl.relativeTime API method!!! Use Polyfill (one exist yet??)
-* @param {number} daysRemaining
-* @return {string} - XX day(s)
+* @function dayIntl - Days remaining in local lang
+* @param {number} remaining
+* @return {string} - N $days
 */
-function dayPlural(daysRemaining) {
-	
-	if ( Number.isInteger(daysRemaining) ) {
-	
-		if (daysRemaining !== 1) {
-			return daysRemaining + ' ' + 'days';
-		} else {
-			return daysRemaining + ' ' + 'day';
-		}
-
+function dayIntl(remaining) {
+	if ('DurationFormat' in Intl) {
+		let lang = window.navigator.languages ?? 'en';
+		let options = {days: remaining};
+		return new Intl.DurationFormat(lang, {style: "short"}).format(options);
+	} else {
+		return `${remaining} ${remaining !== 1 ?  'days' : 'day'}`;
 	}
 }
 
@@ -157,7 +154,7 @@ function dateFill(datechanged) {
 		domDaystart.setAttribute('datetime', `${dateUtc(dateStart)}`);
 
 		// Days Remain
-		domDayremain.textContent = `${ dayPlural(dateDayremain) }`;
+		domDayremain.textContent = `${ dayIntl(dateDayremain) }`;
 		domDayremain.setAttribute('datetime', `P${dateDayremain}D`);
 		
 		// Date End
