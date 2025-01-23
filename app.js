@@ -136,8 +136,7 @@ class makeDates {
 }
 
 /**
-* Add dates to DOM
-* @function dateFill
+* @function dateFill - Add dates to DOM
 * @param {date} datechanged
 */
 function dateFill(datechanged) {
@@ -149,8 +148,8 @@ function dateFill(datechanged) {
 		
 		// Vars
 		let domDaystart = document.querySelector('#dayStart');
-		let	domDayremain = document.querySelector('#dayRemaining');
-		let	domDayend = document.querySelector('#dayEnd');		
+		let domDayremain = document.querySelector('#dayRemaining');
+		let domDayend = document.querySelector('#dayEnd');		
 		
 		// Date Start		
 		domDaystart.textContent = dayjs(dateStart).format('DD/MM/YYYY');
@@ -170,8 +169,7 @@ function dateFill(datechanged) {
 
 
 /**
-* Get stored date
-* @function brushDate
+* @function brushDate - Get stored date
 * @callback {dateFill}
 */
 function brushDate() {
