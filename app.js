@@ -81,7 +81,7 @@ function dayIntl(remaining) {
 	if ('DurationFormat' in Intl) {
 		let lang = window.navigator.languages ?? 'en';
 		let options = {days: remaining};
-		return new Intl.DurationFormat(lang, {style: "short"}).format(options);
+		return new Intl.DurationFormat(lang, {days: "short", daysDisplay: "always"}).format(options);
 	} else {
 		return `${remaining} ${remaining !== 1 ?  'days' : 'day'}`;
 	}
