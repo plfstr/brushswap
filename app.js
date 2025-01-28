@@ -121,7 +121,7 @@ class makeDates {
 	
 	/** @returns {number} */
 	get dateDayremain() {
-		return Temporal.Now.plainDateISO().until(this.dateEnd);;
+		return Temporal.Now.plainDateISO().until(this.dateEnd);
 	}
 	
 }
