@@ -89,8 +89,8 @@ function dayPlural(remaining) {
 */
 function dateUtc( dateIn ){
 	
-	if ( dateValid(dateIn) ) {
-		return dayjs(dateIn).format();
+	if ( dateIn ) {
+		return Temporal.PlainDateTime.from(dateIn).toString();
 	}
 	
 }
