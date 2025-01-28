@@ -141,15 +141,15 @@ function dateFill(datechanged) {
 		let domDayend = document.querySelector('#dayEnd');		
 		
 		// Date Start		
-		domDaystart.textContent = dayjs(dateStart).format('DD/MM/YYYY');
+		domDaystart.textContent = dateStart;
 		domDaystart.setAttribute('datetime', `${dateUtc(dateStart)}`);
 
 		// Days Remain
 		domDayremain.textContent = `${ dayPlural(dateDayremain) }`;
-		domDayremain.setAttribute('datetime', `P${dateDayremain}D`);
+		domDayremain.setAttribute('datetime', dateDayremain);
 		
 		// Date End
-		domDayend.textContent = dayjs(dateEnd).format('DD/MM/YYYY');
+		domDayend.textContent = dateEnd;
 		domDayend.setAttribute('datetime', `${dateUtc(dateEnd)}`);
 	
 	}
