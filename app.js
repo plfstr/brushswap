@@ -66,14 +66,16 @@ function dateValid( dateChecked ) {
 * @param {number} daysRemaining
 * @return {string} - XX day(s)
 */
-function dayPlural(daysRemaining) {
+function dayPlural(remaining) {
+
+	let numdays = Temporal.Duration.from({days: remaining.days}).days;
 	
-	if ( Number.isInteger(daysRemaining) ) {
+	if ( Number.isInteger(numdays) ) {
 	
-		if (daysRemaining !== 1) {
-			return daysRemaining + ' ' + 'days';
+		if (numdays !== 1) {
+			return numdays + ' ' + 'days';
 		} else {
-			return daysRemaining + ' ' + 'day';
+			return numdays + ' ' + 'day';
 		}
 
 	}
