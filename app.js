@@ -119,7 +119,7 @@ class makeDates {
 		return this.#date.add({ days: 90});
 	}
 	
-	/** @returns {number} */
+	/** @returns {Object} */
 	get dateDayremain() {
 		return Temporal.Now.plainDateISO().until(this.dateEnd);
 	}
