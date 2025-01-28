@@ -143,7 +143,7 @@ function dateFill(datechanged) {
 		let domDayend = document.querySelector('#dayEnd');		
 		
 		// Date Start		
-		domDaystart.textContent = dateStart;
+		domDaystart.textContent = dateStart.toLocaleString();
 		domDaystart.setAttribute('datetime', `${dateUtc(dateStart)}`);
 
 		// Days Remain
@@ -151,7 +151,7 @@ function dateFill(datechanged) {
 		domDayremain.setAttribute('datetime', dateDayremain);
 		
 		// Date End
-		domDayend.textContent = dateEnd;
+		domDayend.textContent = dateEnd.toLocaleString();
 		domDayend.setAttribute('datetime', `${dateUtc(dateEnd)}`);
 	
 	}
