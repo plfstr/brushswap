@@ -104,22 +104,22 @@ class makeDates {
 	/** @param {date} datechanged */
 	constructor (datechanged) {
 		/** @private */
-		this.#date = dayjs(datechanged);
+		this.#date = Temporal.PlainDate.from(datechanged);
 	}
 
 	/** @returns {date} */
 	get dateStart() {
-		return dayjs(this.#date).format();
+		return this.#date;
 	}
 
 	/** @returns {date} */
 	get dateEnd() {
-		return dayjs(this.#date).add(90, 'day').format();
+		return this.#date.add({ days: 90});
 	}
 	
 	/** @returns {number} */
 	get dateDayremain() {
-		return Math.abs( Math.min(0, dayjs(new Date()).diff(this.dateEnd, 'day') ) );
+		return Temporal.Now.plainDateISO().until(this.dateEnd);;
 	}
 	
 }
