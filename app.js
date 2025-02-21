@@ -52,12 +52,12 @@ if (storedDate && navigator.storage && navigator.storage.persist) {
 
 
 /**
-*	@function dateChecked - Checks date value passed is valid date
+*	@function dateValid - Checks date value passed is valid date
 *	@param {date} dateChecked
 *	@return {boolean}
 */
 function dateValid( dateChecked ) {
-	return dayjs(dateChecked).isValid();
+	return new Date(dateChecked).toString() !== 'Invalid Date';
 }
 
 
