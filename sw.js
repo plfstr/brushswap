@@ -41,8 +41,17 @@ self.addEventListener('fetch', function(event) {
 
 self.addEventListener('activate', function(event) {
   console.log('[activate] Activating ServiceWorker!');
-  console.log('[activate] Claiming this ServiceWorker!');
   event.waitUntil(self.clients.claim());
+  event.waitUntil(
+    caches.keys().then(keys => Promise.all(
+      keys.map(key => {
+        if (key.startsWith("rtbcache") && !CACHE.includes(key)) {
+          return caches.delete(key);
+        }
+      })
+    ))
+  );
+});
 });
 
 self.addEventListener('error', err => {
