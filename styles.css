@@ -156,10 +156,10 @@ a {
 	line-height: 1;
 	font-variant-numeric: tabular-nums;
 	text-transform: uppercase;
-	transition: opacity .3s ease;
+	transition: opacity .5s ease;
 	opacity: 1;
 	@starting-style {
-	    opacity: .5;
+	    opacity: .3;
 	}
 }
 
