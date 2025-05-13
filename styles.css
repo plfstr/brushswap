@@ -182,12 +182,17 @@ a {
 		height: var(--rtb-radi);
 		top: 0;
 		left: 0;
-		-webkit-transform: translate(0, calc( 0px - var(--rtb-radi) + 0.0625rem ));
-		transform: translate(0, calc( 0px - var(--rtb-radi) + 0.0625rem ));
+		-webkit-transform: translate(0, calc( 0px - var(--rtb-radi) ));
+		transform: translate(0, calc( 0px - var(--rtb-radi) ));
 		background-color: inherit;
 		background-clip: border-box;
 		-webkit-mask: radial-gradient(farthest-side at top right,transparent 98%,#000 100%);
 		mask: radial-gradient(farthest-side at top right,transparent 98%,#000 100%);
+		@supports (clip-path: shape(from 0 0, move to 0 0)) {
+			-webkit-mask: none;
+			mask: none;
+			clip-path: shape(from 0% 0%, arc to 100% 100% of 100% 100%, line to 0% 100%, close);
+		}
 	}
 }
 
