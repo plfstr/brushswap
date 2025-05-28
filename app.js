@@ -62,23 +62,12 @@ function dateValid( dateChecked ) {
 
 
 /**
-* @function - Days Remaining Plural String Function. New Intl.relativeTime API method!!! Use Polyfill (one exist yet??)
-* @param {number} daysRemaining
+* @function dayPlural - Days Remaining Plural String Function
+* @param {number} dateDayremain
 * @return {string} - XX day(s)
 */
-function dayPlural(remaining) {
-
-	let numdays = Temporal.Duration.from({days: remaining.days}).days;
-	
-	if ( Number.isInteger(numdays) ) {
-	
-		if (numdays !== 1) {
-			return numdays + ' ' + 'days';
-		} else {
-			return numdays + ' ' + 'day';
-		}
-
-	}
+function dayPlural(dateDayremain) {
+	return dateDayremain.days === 1 ? `${dateDayremain.days} day` : `${Math.max(0, dateDayremain.days)} days`;
 }
 
 
