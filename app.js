@@ -54,31 +54,22 @@ if (window.matchMedia('(display-mode: browser)').matches) {
 
 
 /**
-*	@function dateChecked - Checks date value passed is valid date
+*	@function dateValid - Checks date value passed is valid date
 *	@param {date} dateChecked
 *	@return {boolean}
 */
 function dateValid( dateChecked ) {
-	return dayjs(dateChecked).isValid();
+	return new Date(dateChecked).toString() !== 'Invalid Date';
 }
 
 
 /**
-* @function - Days Remaining Plural String Function. New Intl.relativeTime API method!!! Use Polyfill (one exist yet??)
-* @param {number} daysRemaining
+* @function dayPlural - Days Remaining Plural String Function
+* @param {number} dateDayremain
 * @return {string} - XX day(s)
 */
-function dayPlural(daysRemaining) {
-	
-	if ( Number.isInteger(daysRemaining) ) {
-	
-		if (daysRemaining !== 1) {
-			return daysRemaining + ' ' + 'days';
-		} else {
-			return daysRemaining + ' ' + 'day';
-		}
-
-	}
+function dayPlural(dateDayremain) {
+	return dateDayremain.days === 1 ? `${dateDayremain.days} day` : `${Math.max(0, dateDayremain.days)} days`;
 }
 
 
@@ -89,8 +80,8 @@ function dayPlural(daysRemaining) {
 */
 function dateUtc( dateIn ){
 	
-	if ( dateValid(dateIn) ) {
-		return dayjs(dateIn).format();
+	if ( dateIn ) {
+		return Temporal.PlainDateTime.from(dateIn).toString();
 	}
 	
 }
@@ -106,22 +97,22 @@ class makeDates {
 	/** @param {date} datechanged */
 	constructor (datechanged) {
 		/** @private */
-		this.#date = dayjs(datechanged);
+		this.#date = Temporal.PlainDate.from(datechanged);
 	}
 
 	/** @returns {date} */
 	get dateStart() {
-		return dayjs(this.#date).format();
+		return this.#date;
 	}
 
 	/** @returns {date} */
 	get dateEnd() {
-		return dayjs(this.#date).add(90, 'day').format();
+		return this.#date.add({ days: 90});
 	}
 	
-	/** @returns {number} */
+	/** @returns {Object} */
 	get dateDayremain() {
-		return Math.abs( Math.min(0, dayjs(new Date()).diff(this.dateEnd, 'day') ) );
+		return Temporal.Now.plainDateISO().until(this.dateEnd);
 	}
 	
 }
@@ -143,15 +134,15 @@ function dateFill(datechanged) {
 		let domDayend = document.querySelector('#dayEnd');		
 		
 		// Date Start		
-		domDaystart.textContent = dayjs(dateStart).format('DD/MM/YYYY');
+		domDaystart.textContent = dateStart.toLocaleString();
 		domDaystart.setAttribute('datetime', `${dateUtc(dateStart)}`);
 
 		// Days Remain
 		domDayremain.textContent = `${ dayPlural(dateDayremain) }`;
-		domDayremain.setAttribute('datetime', `P${dateDayremain}D`);
+		domDayremain.setAttribute('datetime', dateDayremain);
 		
 		// Date End
-		domDayend.textContent = dayjs(dateEnd).format('DD/MM/YYYY');
+		domDayend.textContent = dateEnd.toLocaleString();
 		domDayend.setAttribute('datetime', `${dateUtc(dateEnd)}`);
 	
 	}
@@ -217,7 +208,7 @@ function alertDialog(msg) {
 */
 function brushSwapped() {
 	try {
-		let datenow = dayjs().format();
+		let datenow = Temporal.Now.plainDateISO();
 		localStorage.setItem('dateSwapped', datenow);
 		dateFill(datenow);
 		document.body.classList.add('has-updated');
