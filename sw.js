@@ -1,10 +1,10 @@
 const CACHE = 'rtbcache';
 var REQUIRED_FILES = [
-  'index.html?20210223',
-  'styles.css?20220429',
-  'app.js?20240919',
-  'temporal-polyfill.min.js',
-  'manifest.json'
+  '/index.html?20210223',
+  '/styles.css?20220429',
+  '/app.js?20240919',
+  '/vendor/temporal-polyfill.min.js',
+  '/manifest.json'
 ];
 
 self.addEventListener('install', function(event) {
