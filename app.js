@@ -43,7 +43,7 @@ if (hasLocalstorage) {
 
 // Check storage persisted and prompt if not
 if (window.matchMedia('(display-mode: browser)').matches) {
-	if (storedDate && navigator.storage && navigator.storage.persist) {
+	if (storedDate && navigator?.storage?.persist) {
 		navigator.storage.persisted().then((persistence) => {
 			if (persistence !== true) {
 				userMsg('Brush Swap date will be lost without ‘Persistant Storage’ permission. \n Allow this browser permission, or install app to homescreen.');
@@ -212,7 +212,7 @@ function brushSwapped() {
 		localStorage.setItem('dateSwapped', datenow);
 		dateFill(datenow);
 		document.body.classList.add('has-updated');
-		if (navigator.storage && navigator.storage.persist) {
+		if (navigator?.storage?.persist) {
 			navigator.storage.persist().then((persistence) => {
 				if (!persistence) {
 					userMsg('Brush Swap date will be lost without ‘Persistant Storage’ persmission. \n Allow this browser permission, or install app to homescreen.');
