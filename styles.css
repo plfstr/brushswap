@@ -8,8 +8,8 @@
 	--rtb-shadow: rgba(0,0,50,0.1);
 	--rtb-radi: 1.75rem;
 	--rtb-padding: 1rem;
-	--rtb-padding-half: calc(var(--rtb-padding) - calc(var(--rtb-padding) * .5));
-	--rtb-padding-double: calc(var(--rtb-padding) + var(--rtb-padding));
+	--rtb-padding-half: calc(var(--rtb-padding) / 2);
+	--rtb-padding-double: calc(var(--rtb-padding) * 2);
 }
 
 @supports not (color: light-dark(#fff, #000)) {
