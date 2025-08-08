@@ -141,7 +141,7 @@ a {
 [class^='timer__value--'] {
 	position: relative;
 	margin-top: calc(var(--rtb-padding) - calc(var(--rtb-padding) * 2.5));
-	margin-top: calc(var(--rtb-padding) * --padfactor(-1.5));
+	margin-top: --padfactor(-1.5);
 	padding: var(--rtb-padding) var(--rtb-padding-half) var(--rtb-padding-double);
 	padding: --padfactor(1) --padfactor(0.5) --padfactor(2);
 	background-color: var(--rtb-stripe, #59eac3);
