@@ -208,7 +208,7 @@ function alertDialog(msg) {
 */
 function brushSwapped() {
 	try {
-		let datenow = Temporal.Now.plainDateISO();
+		let datenow = Temporal.Now.plainDateISO().toString();
 		localStorage.setItem('dateSwapped', datenow);
 		dateFill(datenow);
 		document.body.classList.add('has-updated');
