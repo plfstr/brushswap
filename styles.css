@@ -39,7 +39,7 @@
 }
 
 @function --padfactor(--factor) {
-	return calc(var(--rtb-padding) * var(--factor));
+	result: calc(var(--rtb-padding) * var(--factor));
 }
 
 html {
