@@ -282,7 +282,7 @@ if ("serviceWorker" in navigator) {
  * Stored date expired icon badging...
  */
 if (storedDate && navigator.setAppBadge) {
-	if (new makeDates(storedDate).dateDayremain <= 10) {
+	if (new makeDates(storedDate).dateDayremain.days <= 10) {
 	    navigator.setAppBadge().catch((error) => {
 	      console.error(error);
 	    });
