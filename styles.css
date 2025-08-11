@@ -38,6 +38,10 @@
 	initial-value: transparent;
 }
 
+@function --padfactor(--factor) {
+	result: calc(var(--rtb-padding) * var(--factor));
+}
+
 html {
   box-sizing: border-box;
 }
@@ -137,7 +141,9 @@ a {
 [class^='timer__value--'] {
 	position: relative;
 	margin-top: calc(var(--rtb-padding) * -1.5);
+	margin-top: --padfactor(-1.5);
 	padding: var(--rtb-padding) var(--rtb-padding-half) var(--rtb-padding-double);
+	padding: --padfactor(1) --padfactor(0.5) --padfactor(2);
 	background-color: var(--rtb-stripe, #59eac3);
 	color: var(--rtb-times);
 	border-radius: 0em var(--rtb-radi) 0 0;
@@ -145,6 +151,7 @@ a {
 
 [class^='timer__value--'] h3 {
 	margin: 0 0 var(--rtb-padding-half);
+	margin: 0 0 --padfactor(0.5);
 	line-height: 1;
 	font-weight: normal;
 }
