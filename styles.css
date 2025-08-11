@@ -8,8 +8,6 @@
 	--rtb-shadow: rgba(0,0,50,0.1);
 	--rtb-radi: 1.75rem;
 	--rtb-padding: 1rem;
-	--rtb-padding-half: calc(var(--rtb-padding) / 2);
-	--rtb-padding-double: calc(var(--rtb-padding) * 2);
 }
 
 @supports not (color: light-dark(#fff, #000)) {
@@ -137,14 +135,14 @@ a {
 [class^='timer__value--'] {
 	position: relative;
 	margin-top: calc(var(--rtb-padding) * -1.5);
-	padding: var(--rtb-padding) var(--rtb-padding-half) var(--rtb-padding-double);
+	padding: var(--rtb-padding) calc(var(--rtb-padding) / 2) calc(var(--rtb-padding) * 2);
 	background-color: var(--rtb-stripe, #59eac3);
 	color: var(--rtb-times);
 	border-radius: 0em var(--rtb-radi) 0 0;
 }
 
 [class^='timer__value--'] h3 {
-	margin: 0 0 var(--rtb-padding-half);
+	margin: 0 0 calc(var(--rtb-padding) / 2);
 	line-height: 1;
 	font-weight: normal;
 }
