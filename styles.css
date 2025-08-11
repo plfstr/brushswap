@@ -134,47 +134,48 @@ a {
 	margin: 2rem auto;
 }
 
-[class^='timer__value--'] {
-	position: relative;
-	margin-top: calc(var(--rtb-padding) * -1.5);
-	padding: var(--rtb-padding) var(--rtb-padding-half) var(--rtb-padding-double);
-	background-color: var(--rtb-stripe, #59eac3);
-	color: var(--rtb-times);
-	border-radius: 0em var(--rtb-radi) 0 0;
-}
+@scope ([class^='timer__value--']) {
+	
+	:scope {
+		position: relative;
+		margin-top: calc(var(--rtb-padding) * -1.5);
+		padding: var(--rtb-padding) var(--rtb-padding-half) var(--rtb-padding-double);
+		background-color: var(--rtb-stripe, #59eac3);
+		color: var(--rtb-times);
+		border-radius: 0em var(--rtb-radi) 0 0;
+		
+		&:first-of-type {
+			margin-top: 0;	
+		}
+		
+		&:last-of-type {
+			padding-bottom: var(--rtb-padding);
+			border-bottom-right-radius: var(--rtb-radi);
+			border-bottom-left-radius: var(--rtb-radi);
+		}
 
-[class^='timer__value--'] h3 {
-	margin: 0 0 var(--rtb-padding-half);
-	line-height: 1;
-	font-weight: normal;
-}
+		/*
+		* Paste Colors Details
+		* :before - inherited from parent
+		* :after - mask colour of previous element to create the swoop
+		* element - the color you expect
+		*/
+		.timer__value--start& {
+			--rtb-stripe: var(--rtb-light);
+		}
+		
+		.timer__value--days& {
+			--rtb-stripe: var(--rtb-middle);
+		}
+		
+		.timer__value--end& {
+			color: var(--rtb-middle);
+			--rtb-stripe: var(--rtb-times);
+		}
 
-[class^='timer__value--'] time {
-	display: block;
-	margin-bottom: 0;
-	font-size: 2.5rem;
-	line-height: 1;
-	font-variant-numeric: tabular-nums;
-	text-transform: uppercase;
-	transition: opacity .5s ease;
-	opacity: 1;
-	@starting-style {
-	    opacity: .3;
 	}
-}
 
-[class^='timer__value--']:first-of-type {
-	margin-top: 0;	
-}
-
-[class^='timer__value--']:last-of-type {
-	padding-bottom: var(--rtb-padding);
-	border-bottom-right-radius: var(--rtb-radi);
-	border-bottom-left-radius: var(--rtb-radi);
-}
-
-@supports (mask:radial-gradient(farthest-side at top right,transparent 98%,#000 100%)) or (-webkit-mask:radial-gradient(farthest-side at top right,transparent 98%,#000 100%)) {
-	[class^='timer__value--']:before {
+	&:before {
 		position: absolute;
 		content: "";
 		display: block;
@@ -194,25 +195,27 @@ a {
 			clip-path: shape(from 0% 0%, arc to 100% 100% of 100% 100%, line to 0% 100%, close);
 		}
 	}
-}
 
-/*
-* Paste Colors Details
-* :before - inherited from parent
-* :after - mask colour of previous element to create the swoop
-* element - the color you expect
-*/
-.timer__value--start {
-	--rtb-stripe: var(--rtb-light);
-}
+	& h3 {
+		margin: 0 0 var(--rtb-padding-half);
+		line-height: 1;
+		font-weight: normal;
+	}
+	
+	& time {
+		display: block;
+		margin-bottom: 0;
+		font-size: 2.5rem;
+		line-height: 1;
+		font-variant-numeric: tabular-nums;
+		text-transform: uppercase;
+		transition: opacity .5s ease;
+		opacity: 1;
+		@starting-style {
+		    opacity: .3;
+		}
+	}
 
-.timer__value--days {
-	--rtb-stripe: var(--rtb-middle);
-}
-
-.timer__value--end {
-	color: var(--rtb-middle);
-	--rtb-stripe: var(--rtb-times);
 }
 
 button {
