@@ -138,7 +138,7 @@ function dateFill(datechanged) {
 		domDaystart.setAttribute('datetime', `${dateUtc(dateStart)}`);
 
 		// Days Remain
-		domDayremain.textContent = `${ dayPlural(dateDayremain) }`;
+		domDayremain.textContent = `${ dayPlural(dateDayremain.days) }`;
 		domDayremain.setAttribute('datetime', dateDayremain);
 		
 		// Date End
