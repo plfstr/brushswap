@@ -65,11 +65,11 @@ function dateValid( dateChecked ) {
 
 /**
 * @function dayPlural - Days Remaining Plural String Function
-* @param {number} dateDayremain
+* @param {number} daysremain
 * @return {string} - XX day(s)
 */
-function dayPlural(dateDayremain) {
-	return dateDayremain.days === 1 ? `${dateDayremain.days} day` : `${Math.max(0, dateDayremain.days)} days`;
+function dayPlural(daysremain) {
+	return daysremain === 1 ? `${daysremain} day` : `${Math.max(0, daysremain)} days`;
 }
 
 
@@ -138,7 +138,7 @@ function dateFill(datechanged) {
 		domDaystart.setAttribute('datetime', `${dateUtc(dateStart)}`);
 
 		// Days Remain
-		domDayremain.textContent = `${ dayPlural(dateDayremain) }`;
+		domDayremain.textContent = `${ dayPlural(dateDayremain.days) }`;
 		domDayremain.setAttribute('datetime', dateDayremain);
 		
 		// Date End
