@@ -58,8 +58,14 @@ if (window.matchMedia('(display-mode: browser)').matches) {
 *	@param {date} dateChecked
 *	@return {boolean}
 */
-function dateValid( dateChecked ) {
-	return new Date(dateChecked).toString() !== 'Invalid Date';
+function dateValid(testdate) {
+	try {
+		let testarray = testdate.split('-');
+		return Temporal.PlainDate.from(testdate).equals({year: testarray?.[0], month: testarray?.[1], day: testarray?.[2]});
+	}
+	} catch(err) {
+		return false;
+	}
 }
 
 
