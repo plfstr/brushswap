@@ -1,36 +1,36 @@
 /* Colour Vars */
 :root {
-	--rtb-body: light-dark(#354fb9, #eee);
-	--rtb-times:light-dark(#354fb9, #223a95);
-	--rtb-appbg: light-dark(#aadeff, #16255e);
-	--rtb-light: light-dark(#8bd4ff, #80c7f0);
-	--rtb-middle: light-dark(#17d1f0, #08c2e0);
-	--rtb-shadow: rgba(0,0,50,0.1);
-	--rtb-radi: 1.75rem;
-	--rtb-padding: 1rem;
+	--bs-body: light-dark(#354fb9, #eee);
+	--bs-times:light-dark(#354fb9, #223a95);
+	--bs-appbg: light-dark(#aadeff, #16255e);
+	--bs-light: light-dark(#8bd4ff, #80c7f0);
+	--bs-middle: light-dark(#17d1f0, #08c2e0);
+	--bs-shadow: rgba(0,0,50,0.1);
+	--bs-radi: 1.75rem;
+	--bs-padding: 1rem;
 }
 
 @supports not (color: light-dark(#fff, #000)) {
 	:root {
-		--rtb-body: #354fb9;
-		--rtb-times: #354fb9;
-		--rtb-appbg: #aadeff;
-		--rtb-light: #8bd4ff;
-		--rtb-middle: #17d1f0;
+		--bs-body: #354fb9;
+		--bs-times: #354fb9;
+		--bs-appbg: #aadeff;
+		--bs-light: #8bd4ff;
+		--bs-middle: #17d1f0;
 	}
 	
 	@media (prefers-color-scheme: dark) {
 		:root {
-			--rtb-body: #eee;
-			--rtb-times: #223a95;
-			--rtb-appbg: #16255e;
-			--rtb-light: #80c7f0;
-			--rtb-middle: #08c2e0;
+			--bs-body: #eee;
+			--bs-times: #223a95;
+			--bs-appbg: #16255e;
+			--bs-light: #80c7f0;
+			--bs-middle: #08c2e0;
 		}
 	}
 }
 
-@property --rtb-stripe {
+@property --bs-stripe {
 	syntax: "*";
 	inherits: true;
 	initial-value: transparent;
@@ -57,10 +57,10 @@ body {
 	align-content: center;
 	align-content: safe center;
 	color: #354fb9;
-	color: var(--rtb-body);
+	color: var(--bs-body);
 	background-color: #d3eeff;
-	background-color: var(--rtb-appbg);
-	background-image: radial-gradient(#fff, var(--rtb-appbg));
+	background-color: var(--bs-appbg);
+	background-image: radial-gradient(#fff, var(--bs-appbg));
 }
 
 @media (prefers-color-scheme: dark) {
@@ -134,15 +134,15 @@ a {
 
 [class^='timer__value--'] {
 	position: relative;
-	margin-top: calc(var(--rtb-padding) * -1.5);
-	padding: var(--rtb-padding) calc(var(--rtb-padding) / 2) calc(var(--rtb-padding) * 2);
-	background-color: var(--rtb-stripe, #59eac3);
-	color: var(--rtb-times);
-	border-radius: 0em var(--rtb-radi) 0 0;
+	margin-top: calc(var(--bs-padding) * -1.5);
+	padding: var(--bs-padding) calc(var(--bs-padding) / 2) calc(var(--bs-padding) * 2);
+	background-color: var(--bs-stripe, #59eac3);
+	color: var(--bs-times);
+	border-radius: 0em var(--bs-radi) 0 0;
 }
 
 [class^='timer__value--'] h3 {
-	margin: 0 0 calc(var(--rtb-padding) / 2);
+	margin: 0 0 calc(var(--bs-padding) / 2);
 	line-height: 1;
 	font-weight: normal;
 }
@@ -166,9 +166,9 @@ a {
 }
 
 [class^='timer__value--']:last-of-type {
-	padding-bottom: var(--rtb-padding);
-	border-bottom-right-radius: var(--rtb-radi);
-	border-bottom-left-radius: var(--rtb-radi);
+	padding-bottom: var(--bs-padding);
+	border-bottom-right-radius: var(--bs-radi);
+	border-bottom-left-radius: var(--bs-radi);
 }
 
 @supports (mask:radial-gradient(farthest-side at top right,transparent 98%,#000 100%)) or (-webkit-mask:radial-gradient(farthest-side at top right,transparent 98%,#000 100%)) {
@@ -176,12 +176,12 @@ a {
 		position: absolute;
 		content: "";
 		display: block;
-		width: var(--rtb-radi);
-		height: var(--rtb-radi);
+		width: var(--bs-radi);
+		height: var(--bs-radi);
 		top: 0;
 		left: 0;
-		-webkit-transform: translate(0, calc( 0px - var(--rtb-radi) ));
-		transform: translate(0, calc( 0px - var(--rtb-radi) ));
+		-webkit-transform: translate(0, calc( 0px - var(--bs-radi) ));
+		transform: translate(0, calc( 0px - var(--bs-radi) ));
 		background-color: inherit;
 		background-clip: border-box;
 		-webkit-mask: radial-gradient(farthest-side at top right,transparent 98%,#000 100%);
@@ -201,16 +201,16 @@ a {
 * element - the color you expect
 */
 .timer__value--start {
-	--rtb-stripe: var(--rtb-light);
+	--bs-stripe: var(--bs-light);
 }
 
 .timer__value--days {
-	--rtb-stripe: var(--rtb-middle);
+	--bs-stripe: var(--bs-middle);
 }
 
 .timer__value--end {
-	color: var(--rtb-middle);
-	--rtb-stripe: var(--rtb-times);
+	color: var(--bs-middle);
+	--bs-stripe: var(--bs-times);
 }
 
 button {
@@ -219,12 +219,12 @@ button {
 	width: 100%;
 	cursor: pointer;
 	border-radius: .5rem;
-	color: var(--rtb-times);
+	color: var(--bs-times);
 	background: #eee;
 	background-clip: padding-box;
 	border: 2px solid currentColor;
 	border-radius: 1.5rem;
-	box-shadow: inset 0 -.5rem var(--rtb-shadow, transparent);
+	box-shadow: inset 0 -.5rem var(--bs-shadow, transparent);
 }
 
 @media only screen and (min-width:420px) {
@@ -234,7 +234,7 @@ button {
 }
 
 button:is(:hover, :active, :focus) {
-	background-color: var(--rtb-middle);
+	background-color: var(--bs-middle);
 	}
 
 footer {

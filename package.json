@@ -2,6 +2,6 @@
     "name": "retoothbrush",
     "version": "1.0.0",
     "dependencies": {
-        "@js-temporal/polyfill": "0.x"
+        "@js-temporal/polyfill": "0.5.1"
     }
 }
