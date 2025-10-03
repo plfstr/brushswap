@@ -8,8 +8,6 @@
 	--bs-shadow: rgba(0,0,50,0.1);
 	--bs-radi: 1.75rem;
 	--bs-padding: 1rem;
-	--bs-padding-half: calc(var(--bs-padding) / 2);
-	--bs-padding-double: calc(var(--bs-padding) * 2);
 }
 
 @supports not (color: light-dark(#fff, #000)) {
@@ -137,14 +135,14 @@ a {
 [class^='timer__value--'] {
 	position: relative;
 	margin-top: calc(var(--bs-padding) * -1.5);
-	padding: var(--bs-padding) var(--bs-padding-half) var(--bs-padding-double);
+	padding: var(--bs-padding) calc(var(--bs-padding) / 2) calc(var(--bs-padding) * 2);
 	background-color: var(--bs-stripe, #59eac3);
 	color: var(--bs-times);
 	border-radius: 0em var(--bs-radi) 0 0;
 }
 
 [class^='timer__value--'] h3 {
-	margin: 0 0 var(--bs-padding-half);
+	margin: 0 0 calc(var(--bs-padding) / 2);
 	line-height: 1;
 	font-weight: normal;
 }
