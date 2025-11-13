@@ -1,10 +1,10 @@
 /* Colour Vars */
 :root {
 	--bs-body: light-dark(#354fb9, #eee);
-	--bs-times:light-dark(#354fb9, #223a95);
 	--bs-appbg: light-dark(#aadeff, #16255e);
 	--bs-light: light-dark(#8bd4ff, #80c7f0);
 	--bs-middle: light-dark(#17d1f0, #08c2e0);
+	--bs-dark:light-dark(#354fb9, #223a95);
 	--bs-shadow: rgba(0,0,50,0.1);
 	--bs-radi: 1.75rem;
 	--bs-padding: 1rem;
