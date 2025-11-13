@@ -13,7 +13,7 @@
 @supports not (color: light-dark(#fff, #000)) {
 	:root {
 		--bs-body: #354fb9;
-		--bs-times: #354fb9;
+		--bs-dark: #354fb9;
 		--bs-appbg: #aadeff;
 		--bs-light: #8bd4ff;
 		--bs-middle: #17d1f0;
@@ -22,7 +22,7 @@
 	@media (prefers-color-scheme: dark) {
 		:root {
 			--bs-body: #eee;
-			--bs-times: #223a95;
+			--bs-dark: #223a95;
 			--bs-appbg: #16255e;
 			--bs-light: #80c7f0;
 			--bs-middle: #08c2e0;
@@ -137,7 +137,7 @@ a {
 	margin-top: calc(var(--bs-padding) * -1.5);
 	padding: var(--bs-padding) calc(var(--bs-padding) / 2) calc(var(--bs-padding) * 2);
 	background-color: var(--bs-stripe, #59eac3);
-	color: var(--bs-times);
+	color: var(--bs-dark);
 	border-radius: 0em var(--bs-radi) 0 0;
 }
 
@@ -210,7 +210,7 @@ a {
 
 .timer__value--end {
 	color: var(--bs-middle);
-	--bs-stripe: var(--bs-times);
+	--bs-stripe: var(--bs-dark);
 }
 
 button {
@@ -219,7 +219,7 @@ button {
 	width: 100%;
 	cursor: pointer;
 	border-radius: .5rem;
-	color: var(--bs-times);
+	color: var(--bs-dark);
 	background: #eee;
 	background-clip: padding-box;
 	border: 2px solid currentColor;
