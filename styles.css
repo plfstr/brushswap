@@ -61,12 +61,7 @@ body {
 	background-color: #d3eeff;
 	background-color: var(--bs-appbg);
 	background-image: radial-gradient(#fff, var(--bs-appbg));
-}
-
-@media (prefers-color-scheme: dark) {
-    body {
-	background-image: none
-    }
+	background-image: if(media(prefers-color-scheme: light): radial-gradient(#fff, var(--bs-appbg)); else: none);
 }
 
 .wrap {
