@@ -249,6 +249,7 @@ dialog {
 	color: inherit;
 	border-radius: 1rem;
 	transition: opacity 0.3s ease-out, transform 0.3s ease-out, overlay 0.3s ease-out allow-discrete, display 0.3s ease-out allow-discrete;
+	overscroll-behavior: contain;
 	&[open] {
 		opacity: 1;
 		transform: scale(1);
@@ -259,14 +260,16 @@ dialog {
 	}
 }
 
+dialog::backdrop {
+	overflow: hidden;
+	overscroll-behavior: contain;
+	background-color: rgba(0, 0, 70, .3);
+}
+
 dialog button {
 	font-size: 1.25rem;
 	padding: .5rem 1.5rem;
 	margin: .75rem;
 	width: auto;
 	background-clip: border-box;
-}
-
-dialog::backdrop {
-	background-color: rgba(0, 0, 70, .3);
 }
