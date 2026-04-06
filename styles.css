@@ -133,6 +133,7 @@ a {
 }
 
 [class^='timer__value--'] {
+	contain: layout;
 	position: relative;
 	margin-top: calc(var(--bs-padding) * -1.5);
 	padding: var(--bs-padding) calc(var(--bs-padding) / 2) calc(var(--bs-padding) * 2);
