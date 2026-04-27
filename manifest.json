@@ -1,7 +1,13 @@
 {
   "name": "Brush Swap",
+  "name_localized": {
+    "fr": {"value": "Échange de pinceaux"},
+  },
   "short_name" : "Brush Swap",
   "description": "When did you last change your toothbrush? Keep track with Brush Swap app!",
+  "description_localized": {
+    "fr": "Quand avez-vous changé votre brosse à dents pour la dernière fois? Suivez avec l'application Brush Swap!"
+  },
   "icons": [
     {
       "src": "webclip-512x512-maskable.png",
