@@ -1,8 +1,8 @@
 const CACHE = 'rtbcache';
 var REQUIRED_FILES = [
-  '/index.html?20210223',
-  '/styles.css?20220429',
-  '/app.js?20240919',
+  '/index.html',
+  '/styles.css',
+  '/app.js',
   '/vendor/temporal-polyfill.min.js',
   '/manifest.json'
 ];
