@@ -32,9 +32,9 @@
 
 @supports (color: lch(from AccentColor l c h)) {
 	:root {
+		--bs-light: lch(from var(--bs-middle) max(l, calc(l + 25)) c h);
 		--bs-middle: AccentColor;
-		--bs-dark: lch(from var(--bs-middle) calc(l - 25) c h);
-		--bs-light: lch(from var(--bs-middle) calc(l + 25) c h);
+		--bs-dark: lch(from var(--bs-middle) min(l, calc(l - 25)) c h);
 	}
 }
 
