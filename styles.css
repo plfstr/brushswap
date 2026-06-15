@@ -30,6 +30,14 @@
 	}
 }
 
+@supports (color: lch(from AccentColor l c h)) {
+	:root {
+		--bs-middle: AccentColor;
+		--bs-dark: lch(from var(--bs-middle) calc(l - 25) c h);
+		--bs-light: lch(from var(--bs-middle) calc(l + 25) c h);
+	}
+}
+
 @property --bs-stripe {
 	syntax: "<color>";
 	inherits: true;
