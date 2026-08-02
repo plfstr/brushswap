@@ -220,8 +220,12 @@ function brushSwapped() {
 			})
 		}
 		if (navigator.clearAppBadge) {
-			navigator.clearAppBadge().catch((error) => {
-				console.error(error);
+			Notification.requestPermission().then((result) => {
+				if (result === 'granted') {
+					navigator.clearAppBadge().catch((error) => {console.error(error)});
+				} else {
+					userMsg('Allow notifications to enable a reminder icon badge.');
+				}
 			});
 		}
 		if (deferredPrompt) {
