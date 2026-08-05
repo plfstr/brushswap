@@ -219,7 +219,7 @@ function brushSwapped() {
 				}
 			})
 		}
-		if (navigator.clearAppBadge) {
+		if ('setAppBadge' in navigator) {
 			Notification.requestPermission().then((result) => {
 				if (result === 'granted') {
 					navigator.setAppBadge(0).catch((error) => {console.error(error)});
