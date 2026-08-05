@@ -226,7 +226,7 @@ function brushSwapped() {
 			Notification.requestPermission().then((result) => {
 				if (result === 'granted') {
 					navigator.setAppBadge(0).catch((error) => {console.error(error)});
-				} else {
+				} else if (result === 'prompt') {
 					userMsg('Allow notifications to enable a reminder icon badge.');
 				}
 			});
