@@ -69,7 +69,7 @@ function dateValid( dateChecked ) {
 * @return {string} - XX day(s)
 */
 function dayPlural(daysremain) {
-	return daysremain === 1 ? `${daysremain} day` : `${Math.max(0, daysremain)} days`;
+	return `${Math.max(0, daysremain)} ${daysremain === 1 ? 'day' : 'days'}`;
 }
 
 
