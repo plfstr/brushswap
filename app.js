@@ -3,11 +3,11 @@
 
 // Vars
 /** @type {HTMLElement} */
-let domDaystart = document.querySelector('#dayStart');
+const domDaystart = document.querySelector('#dayStart');
 /** @type {HTMLElement} */
-let	domDayremain = document.querySelector('#dayRemaining');
+const	domDayremain = document.querySelector('#dayRemaining');
 /** @type {HTMLElement} */
-let	domDayend = document.querySelector('#dayEnd');
+const	domDayend = document.querySelector('#dayEnd');
 
 /**
 * @function userMsg - Provides feedback to user
