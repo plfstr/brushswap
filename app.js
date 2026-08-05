@@ -1,6 +1,14 @@
 // @ts-check
 'use strict';
 
+// Vars
+/** @type {HTMLElement} */
+const domDaystart = document.querySelector('#dayStart');
+/** @type {HTMLElement} */
+const	domDayremain = document.querySelector('#dayRemaining');
+/** @type {HTMLElement} */
+const	domDayend = document.querySelector('#dayEnd');
+
 /**
 * @function userMsg - Provides feedback to user
 * @param {string} [msg="Sorry, your browser lacks the features required by Brush Swap"] - User message
@@ -127,11 +135,6 @@ function dateFill(datechanged) {
 		
 		/** @type {Object} */
 		const {dateStart, dateDayremain, dateEnd} = new makeDates(datechanged);
-		
-		// Vars
-		let domDaystart = document.querySelector('#dayStart');
-		let domDayremain = document.querySelector('#dayRemaining');
-		let domDayend = document.querySelector('#dayEnd');		
 		
 		// Date Start		
 		domDaystart.textContent = dateStart.toLocaleString();
