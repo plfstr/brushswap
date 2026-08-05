@@ -219,10 +219,10 @@ function brushSwapped() {
 				}
 			})
 		}
-		if (navigator.clearAppBadge) {
+		if ('setAppBadge' in navigator) {
 			Notification.requestPermission().then((result) => {
 				if (result === 'granted') {
-					navigator.clearAppBadge().catch((error) => {console.error(error)});
+					navigator.setAppBadge(0).catch((error) => {console.error(error)});
 				} else {
 					userMsg('Allow notifications to enable a reminder icon badge.');
 				}
