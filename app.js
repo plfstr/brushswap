@@ -15,9 +15,6 @@ const	domDayend = document.querySelector('#dayEnd');
 */
 function userMsg(msg = "Sorry, your browser lacks the features required by Brush Swap") {
 	alertDialog(msg);
-	console.error(msg);
-	document.querySelector('#brushchange').setAttribute('disabled', 'disabled');
-	return;
 }
 
 //  Mustard Cut
@@ -32,19 +29,8 @@ var hasLocalstorage = () => {
 		localStorage.removeItem('retoothbrush');
 		return true;
 	} catch(e) {
-   	    userMsg('Local storage is not supported by your browser. Please disable "Private Mode", or upgrade browser');
-	    return e instanceof DOMException && (
-            // everything except Firefox
-            e.code === 22 ||
-            // Firefox
-            e.code === 1014 ||
-            // test name field too, because code might not be present
-            // everything except Firefox
-            e.name === 'QuotaExceededError' ||
-            // Firefox
-            e.name === 'NS_ERROR_DOM_QUOTA_REACHED') &&
-            // acknowledge QuotaExceededError only if there's something already stored
-            (storage && storage.length !== 0);
+   	    userMsg('Local storage is not supported by your browser. Please disable ‘Private Mode’, or upgrade browser');
+	    return false;
 	}
 }
 
@@ -63,52 +49,35 @@ if (hasLocalstorage) {
 	storedDate = localStorage.getItem('dateSwapped');
 }
 
-
-/**
- * @var ispersisted
- * @type {boolean}
- */
-let ispersisted = false;
-if (navigator.storage && navigator.storage.persist) {
-	navigator.storage.persisted().then((persistence) => {
-		ispersisted = persistence;
-	})
+// Check storage persisted and prompt if not
+if (window.matchMedia('(display-mode: browser)').matches) {
+	if (storedDate && navigator?.storage?.persist) {
+		navigator.storage.persisted().then((persistence) => {
+			if (persistence !== true) {
+				userMsg('Brush Swap date will be lost without ‘Persistant Storage’ permission. \n Allow this browser permission, or install app to homescreen.');
+			}
+		})
+	}
 }
 
 
 /**
- * @var noprompt
- * @type {boolean}
- */
-const noprompt = window.matchMedia('(display-mode: standalone)').matches || ispersisted;
-
-
-/**
-*	@function dateChecked - Checks date value passed is valid date
+*	@function dateValid - Checks date value passed is valid date
 *	@param {date} dateChecked
 *	@return {boolean}
 */
 function dateValid( dateChecked ) {
-	return dayjs(dateChecked).isValid();
+	return new Date(dateChecked).toString() !== 'Invalid Date';
 }
 
 
 /**
-* @function - Days Remaining Plural String Function. New Intl.relativeTime API method!!! Use Polyfill (one exist yet??)
-* @param {number} daysRemaining
+* @function dayPlural - Days Remaining Plural String Function
+* @param {number} daysremain
 * @return {string} - XX day(s)
 */
-function dayPlural(daysRemaining) {
-	
-	if ( Number.isInteger(daysRemaining) ) {
-	
-		if (daysRemaining !== 1) {
-			return daysRemaining + ' ' + 'days';
-		} else {
-			return daysRemaining + ' ' + 'day';
-		}
-
-	}
+function dayPlural(daysremain) {
+	return `${Math.max(0, daysremain)} ${daysremain === 1 ? 'day' : 'days'}`;
 }
 
 
@@ -119,8 +88,8 @@ function dayPlural(daysRemaining) {
 */
 function dateUtc( dateIn ){
 	
-	if ( dateValid(dateIn) ) {
-		return dayjs(dateIn).format();
+	if ( dateIn ) {
+		return Temporal.PlainDateTime.from(dateIn).toString();
 	}
 	
 }
@@ -131,57 +100,53 @@ function dateUtc( dateIn ){
 */
 class makeDates {
 
+	#date;
+
 	/** @param {date} datechanged */
 	constructor (datechanged) {
-		/** @type {date} */
-		this.date = dayjs(datechanged);
+		/** @private */
+		this.#date = Temporal.PlainDate.from(datechanged);
 	}
 
 	/** @returns {date} */
-	_dateStart() {
-		return dayjs(this.date).format();
+	get dateStart() {
+		return this.#date;
 	}
 
 	/** @returns {date} */
-	_dateEnd() {
-		return dayjs(this.date).add(90, 'day').format();
+	get dateEnd() {
+		return this.#date.add({ days: 90});
 	}
 	
-	/** @returns {number} */
-	_dateDayremain() {
-		return Math.abs( Math.min(0, dayjs(new Date()).diff(this._dateEnd(), 'day') ) );
-	}
-
-	/** @returns {object} */
-	get brushDates() {
-		return {datestart: this._dateStart(), dateremain: this._dateDayremain(), dateend: this._dateEnd()}
+	/** @returns {Object} */
+	get dateDayremain() {
+		return Temporal.Now.plainDateISO().until(this.dateEnd);
 	}
 	
 }
 
 /**
-* Add dates to DOM
-* @function dateFill
+* @function dateFill - Add dates to DOM
 * @param {date} datechanged
 */
 function dateFill(datechanged) {
 
 	if ( dateValid(datechanged) ) {
 		
-		/** @type {{datestart: Date, dateremain: Number, dateend: Date}} */
-		let {datestart, dateremain, dateend} = new makeDates(datechanged).brushDates;
+		/** @type {Object} */
+		const {dateStart, dateDayremain, dateEnd} = new makeDates(datechanged);
 		
 		// Date Start		
-		domDaystart.textContent = dayjs(datestart).format('DD/MM/YYYY');
-		domDaystart.setAttribute('datetime', `${dateUtc(datestart)}`);
+		domDaystart.textContent = dateStart.toLocaleString();
+		domDaystart.setAttribute('datetime', `${dateUtc(dateStart)}`);
 
 		// Days Remain
-		domDayremain.textContent = `${ dayPlural(dateremain) }`;
-		domDayremain.setAttribute('datetime', `P${dateremain}D`);
+		domDayremain.textContent = `${ dayPlural(dateDayremain.days) }`;
+		domDayremain.setAttribute('datetime', dateDayremain);
 		
 		// Date End
-		domDayend.textContent = dayjs(dateend).format('DD/MM/YYYY');
-		domDayend.setAttribute('datetime', `${dateUtc(dateend)}`);
+		domDayend.textContent = dateEnd.toLocaleString();
+		domDayend.setAttribute('datetime', `${dateUtc(dateEnd)}`);
 	
 	}
 		
@@ -189,8 +154,7 @@ function dateFill(datechanged) {
 
 
 /**
-* Get stored date
-* @function brushDate
+* @function brushDate - Get stored date
 * @callback {dateFill}
 */
 function brushDate() {
@@ -247,13 +211,24 @@ function alertDialog(msg) {
 */
 function brushSwapped() {
 	try {
-		let datenow = dayjs().format();
+		let datenow = Temporal.Now.plainDateISO().toString();
 		localStorage.setItem('dateSwapped', datenow);
 		dateFill(datenow);
 		document.body.classList.add('has-updated');
-		if (navigator.clearAppBadge) {
-			navigator.clearAppBadge().catch((error) => {
-				console.error(error);
+		if (navigator?.storage?.persist) {
+			navigator.storage.persist().then((persistence) => {
+				if (!persistence) {
+					userMsg('Brush Swap date will be lost without ‘Persistant Storage’ persmission. \n Allow this browser permission, or install app to homescreen.');
+				}
+			})
+		}
+		if ('setAppBadge' in navigator) {
+			Notification.requestPermission().then((result) => {
+				if (result === 'granted') {
+					navigator.setAppBadge(0).catch((error) => {console.error(error)});
+				} else {
+					userMsg('Allow notifications to enable a reminder icon badge.');
+				}
 			});
 		}
 		if (deferredPrompt) {
@@ -282,18 +257,6 @@ function brushSwap() {
 	}
 }
 
-
-/*
-* If stored data and not persisted, display install prompt!
-*/
-if (storedDate && !noprompt) {
-	if ( !document.querySelector('#installprompt' )) {
-		const banner = document.createElement('p');
-		banner.id = "installprompt";
-		banner.textContent = "Install app to homescreen to ensure data saved";
-		document.querySelector('#brushchange').after(banner);
-	}
-}
 
 /*
 * DOMContentLoaded
@@ -325,10 +288,12 @@ if ("serviceWorker" in navigator) {
 /**
  * Stored date expired icon badging...
  */
-if (navigator.setAppBadge && storedDate && dayjs(storedDate).add(90, 'day') < dayjs() ) {
-    navigator.setAppBadge().catch((error) => {
-      console.error(error);
-    });
+if (storedDate && navigator.setAppBadge) {
+	if (new makeDates(storedDate).dateDayremain.days <= 10) {
+	    navigator.setAppBadge().catch((error) => {
+	      console.error(error);
+	    });
+	}
 }
 
 /**
