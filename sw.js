@@ -1,10 +1,10 @@
 const CACHE = 'rtbcache';
 var REQUIRED_FILES = [
-  '/index.html',
-  '/styles.css',
-  '/app.js',
-  '/vendor/temporal-polyfill.min.js',
-  '/manifest.json'
+  './index.html',
+  './styles.css',
+  './app.js',
+  './vendor/temporal-polyfill.min.js',
+  './manifest.json'
 ];
 
 self.addEventListener('install', function(event) {
@@ -26,10 +26,7 @@ self.addEventListener('fetch', function(event) {
     caches.match(event.request)
       .then(function(response) {
         if (response) {
-          console.log(
-            '[fetch] Returning from ServiceWorker cache: ',
-            event.request.url
-          );
+          console.log('[fetch] Returning from ServiceWorker cache: ', event.request.url);
           return response;
         }
         console.log('[fetch] Returning from server: ', event.request.url);
