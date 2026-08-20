@@ -1,4 +1,4 @@
-const CACHE = 'rtbcache';
+const CACHE = 'brushswapcache_20260820';
 var REQUIRED_FILES = [
   './index.html',
   './styles.css',
@@ -6,6 +6,16 @@ var REQUIRED_FILES = [
   './vendor/temporal-polyfill.min.js',
   './manifest.json'
 ];
+
+async function deleteOldCaches() {
+  try {
+    const cacheNames = await caches.keys();
+    const cachesToDelete = cacheNames.filter(name => name !== CACHE && name.startsWith('brushswapcache'));
+    await Promise.all(cachesToDelete.map(cacheName => caches.delete(cacheName)));
+  } catch (error) {
+    console.error('Error deleting caches:', error);
+  }
+}
 
 self.addEventListener('install', function(event) {
 event.waitUntil(
@@ -40,6 +50,7 @@ self.addEventListener('activate', function(event) {
   console.log('[activate] Activating ServiceWorker!');
   console.log('[activate] Claiming this ServiceWorker!');
   event.waitUntil(self.clients.claim());
+  event.waitUntil(deleteOldCaches());
 });
 
 self.addEventListener('error', err => {
