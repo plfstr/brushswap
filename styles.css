@@ -134,7 +134,7 @@ a {
 	margin: 2rem auto;
 }
 
-@scope ([class^='timer__value--']) {
+@scope (.timer__value--*) {
 	
 	:scope {
 		position: relative;
