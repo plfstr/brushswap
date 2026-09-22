@@ -51,7 +51,6 @@ html, body {
 
 body {
 	padding: .5rem;
-	padding: max(.5rem, env(safe-area-inset-top)) max(.5rem, env(safe-area-inset-right)) max(.5rem, env(safe-area-inset-bottom)) max(.5rem, env(safe-area-inset-left));
 	scroll-padding-top: auto;
 	font: normal 100%/1.5 system-ui, -apple-system, "Open Sans Regular", "Segoe UI", Thonburi, "Lucida Grande", Arial, sans-serif;
 	text-align: center;
