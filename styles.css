@@ -78,6 +78,7 @@ body {
 @media (width >= 500px), (height >= 800px) {
 	body {
 		padding: .75rem;
+		padding: max(.75rem, env(safe-area-inset-top)) max(.75rem, env(safe-area-inset-right)) max(.75rem, env(safe-area-inset-bottom)) max(.75rem, env(safe-area-inset-left));
 		font-size: 1.125rem;
 		display: flex;		
 	}
