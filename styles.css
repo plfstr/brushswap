@@ -144,6 +144,7 @@ a {
 
 [class^='timer__value--'] h3 {
 	margin: 0 0 calc(var(--bs-padding) / 2);
+	font-size: 1.5rem;
 	line-height: 1;
 	font-weight: normal;
 }
