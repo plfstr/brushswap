@@ -173,6 +173,7 @@ a {
 	padding-bottom: var(--bs-padding);
 	border-bottom-right-radius: var(--bs-radi);
 	border-bottom-left-radius: var(--bs-radi);
+	border-bottom-radius: var(--bs-radi);
 }
 
 @supports (mask:radial-gradient(farthest-side at top right,transparent 98%,#000 100%)) or (-webkit-mask:radial-gradient(farthest-side at top right,transparent 98%,#000 100%)) {
