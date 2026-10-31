@@ -30,12 +30,6 @@
 	}
 }
 
-@property --bs-stripe {
-	syntax: "<color>";
-	inherits: true;
-	initial-value: transparent;
-}
-
 html {
   box-sizing: border-box;
 }
@@ -135,6 +129,7 @@ a {
 }
 
 [class^='timer__value--'] {
+	@property --bs-stripe <color>: transparent;
 	contain: layout;
 	position: relative;
 	margin-top: calc(var(--bs-padding) * -1.5);
