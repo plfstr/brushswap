@@ -80,11 +80,6 @@ body {
 		padding: .75rem;
 		padding: max(.75rem, env(safe-area-inset-top)) max(.75rem, env(safe-area-inset-right)) max(.75rem, env(safe-area-inset-bottom)) max(.75rem, env(safe-area-inset-left));
 		font-size: 1.125rem;
-		display: flex;		
-	}
-
-	.wrap {
-		flex: 1 1 auto;
 	}
 }
 
