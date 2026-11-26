@@ -152,22 +152,6 @@ function dateFill(datechanged) {
 		
 }
 
-
-/**
-* @function brushDate - Get stored date
-* @callback {dateFill}
-*/
-function brushDate() {
-	
-	if ( storedDate ) {
-		dateFill(storedDate);
-	} else {
-		return;
-	}
-
-}
-
-
 /* 
 * @function confirmDialog - Dialog/confirm brush change 
 * @callback brushSwapped
@@ -257,11 +241,12 @@ function brushSwap() {
 	}
 }
 
-
 /*
-* DOMContentLoaded
-*/
-document.addEventListener('DOMContentLoaded', brushDate, {once: true});
+* Populate brush dates
+*/ 
+if (storedDate) {
+	dateFill(storedDate);
+}
 
 /*
 * Button Listener
