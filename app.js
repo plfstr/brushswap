@@ -62,11 +62,7 @@ if (hasLocalstorage) {
 // Check storage persisted and prompt if not
 if (window.matchMedia('(display-mode: browser)').matches) {
 	if (storedDate && navigator?.storage?.persist) {
-		navigator.storage.persisted().then((persistence) => {
-			if (persistence !== true) {
-				userMsg('Brush Swap date will be lost without ‘Persistant Storage’ permission. \n Allow this browser permission, or install app to homescreen.');
-			}
-		})
+		navigator.storage.persisted().then(persistence => hasPersistance(persistence));
 	}
 }
 
@@ -226,11 +222,7 @@ function brushSwapped() {
 		dateFill(datenow);
 		document.body.classList.add('has-updated');
 		if (navigator?.storage?.persist) {
-			navigator.storage.persist().then((persistence) => {
-				if (!persistence) {
-					userMsg('Brush Swap date will be lost without ‘Persistant Storage’ persmission. \n Allow this browser permission, or install app to homescreen.');
-				}
-			})
+			navigator.storage.persist().then(persistence => hasPersistance(persistence));
 		}
 		if ('setAppBadge' in navigator) {
 			Notification.requestPermission().then((result) => {
