@@ -62,7 +62,7 @@ if (hasLocalstorage) {
 // Check storage persisted and prompt if not
 if (window.matchMedia('(display-mode: browser)').matches) {
 	if (storedDate && navigator?.storage?.persist) {
-		navigator.storage.persisted().then(persistence => hasPersistance(persistence));
+		navigator.storage.persisted().then(hasPersistance);
 	}
 }
 
@@ -222,7 +222,7 @@ function brushSwapped() {
 		dateFill(datenow);
 		document.body.classList.add('has-updated');
 		if (navigator?.storage?.persist) {
-			navigator.storage.persist().then(persistence => hasPersistance(persistence));
+			navigator.storage.persist().then(hasPersistance);
 		}
 		if ('setAppBadge' in navigator) {
 			Notification.requestPermission().then((result) => {
