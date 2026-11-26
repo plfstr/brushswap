@@ -17,6 +17,16 @@ function userMsg(msg = "Sorry, your browser lacks the features required by Brush
 	alertDialog(msg);
 }
 
+/**
+* @function hasPersistence - checks data persisted and messages user if not
+* @param {boolean} persistence
+*/
+function hasPersistance(persistence) {
+	if (!persistence) {
+		userMsg('Brush Swap date will be lost without ‘Persistent Storage’ permission. \n Allow this browser permission, or install app to homescreen.');
+	}
+}
+
 //  Mustard Cut
 if ( !('visibilityState' in document) ) { 
 	userMsg();
