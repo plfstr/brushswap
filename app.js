@@ -300,8 +300,10 @@ if (storedDate && navigator.setAppBadge) {
 /**
 * Delay PWA install prompt. Call after brush swap...
 */
+if (window.matchMedia('(display-mode: browser)').matches) {
 let deferredPrompt;
 window.addEventListener('beforeinstallprompt', (e) => {
   e.preventDefault();
   deferredPrompt = e;
 });
+}
