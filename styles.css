@@ -253,6 +253,9 @@ dialog {
 			opacity: 0;
 			transform: scale(0.7)
 		}
+		@media (width >= 420px) {
+			max-width: 70%;
+		}
 	}
 }
 
