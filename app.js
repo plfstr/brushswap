@@ -53,7 +53,7 @@ if (hasLocalstorage) {
 * @function hasPersistence - checks data persisted and messages user if not
 * @param {boolean} persistence
 */
-function hasPersistance(persistence) {
+function hasPersistence(persistence) {
 	if (!persistence) {
 		userMsg('Brush Swap date will be lost without ‘Persistent Storage’ permission. \n Allow this browser permission, or install app to homescreen.');
 	}
@@ -61,7 +61,7 @@ function hasPersistance(persistence) {
 // Check storage persisted and prompt if not
 if (window.matchMedia('(display-mode: browser)').matches) {
 	if (storedDate && navigator?.storage?.persist) {
-		navigator.storage.persisted().then(hasPersistance);
+		navigator.storage.persisted().then(hasPersistence);
 	}
 }
 
@@ -221,7 +221,7 @@ function brushSwapped() {
 		dateFill(datenow);
 		document.body.classList.add('has-updated');
 		if (navigator?.storage?.persist) {
-			navigator.storage.persist().then(hasPersistance);
+			navigator.storage.persist().then(hasPersistence);
 		}
 		if ('setAppBadge' in navigator) {
 			Notification.requestPermission().then((result) => {
